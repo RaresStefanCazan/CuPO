@@ -1,0 +1,83 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-size: 16px; 
+}
+
+.header {
+    background-color: #f86060;
+    color: white;
+    padding: 1vh; 
+}
+
+.container {
+    max-width: 90vw; 
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+}
+
+.header-content1, .header-content2 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1vh; 
+    padding: 0.5em; 
+}
+
+.header-content2 h2 {
+    margin-left: 1vw; 
+    font-size: 1.2em; 
+}
+
+.full-screen-image {
+    background-image: url('photo/snack-bento-box-1296x728-header.webp');
+    background-size: cover;
+    background-position: center;
+    width: 100vw; 
+    height: calc(100vh - 10vh); 
+}
+
+.header-content2 h2 a {
+    color: white;
+    text-decoration: none;
+}
+
+.header-content2 h2 a:hover {
+    text-decoration: underline;
+}
+
+header h1 a {
+    color: white;
+    text-decoration: none;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .container {
+        flex-direction: column;
+        align-items: center; 
+    }
+
+    .header-content2 h2 {
+        margin: 0.3em;
+        margin-left: 0;
+        text-align: center; 
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .container {
+        max-width: 90vw; 
+    }
+
+    .header-content2 h2 {
+        margin-left: 0;
+        text-align: center; 
+    }
+
+    .header-content2 h2 {
+        margin: 0.5em; 
+    }
+}
