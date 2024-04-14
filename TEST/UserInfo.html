@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="styles-User.css"> 
+</head>
+
+<body>
+   
+    <header class="header">
+        <div class="container">
+            <div class="header-content1">
+                <h1><a href="HomePage.html">Home</a></h1>
+            </div>
+            <div class="header-content2">
+                <h2><a href="Recipes.html">Recipes</a></h2>
+                <h2><a href="Login.html">Login</a></h2>
+                <h2><a href="Info.html">Info</a></h2>
+                <h2><a href="CulinaryPreferences.html">Culinary Preferences</a></h2>
+                <h2><a href="UserInfo.html">Profile</a></h2>
+            </div>
+        </div>
+    </header>
+
+    
+    <main>
+        <section class="profile-section">
+            <h2>User Profile</h2>
+            
+            
+            <form id="photo-form">
+                <label for="photo">Upload Photo:</label>
+                <input type="file" id="photo" name="photo">
+                <button type="submit">Upload</button>
+            </form>
+
+          
+            <form id="personal-info-form">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+            
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+            
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            
+                <label for="birthdate">Date of Birth:</label>
+                <input type="date" id="birthdate" name="birthdate" required>
+            
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" required>
+            
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" name="height" required>
+            
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    
+                </select>
+            
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone">
+            
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="3"></textarea>
+            
+                <label for="education">Highest Education:</label>
+                <input type="text" id="education" name="education">
+            
+                <label for="occupation">Occupation:</label>
+                <input type="text" id="occupation" name="occupation">
+            
+                <label for="interests">Interests:</label>
+                <textarea id="interests" name="interests" rows="4"></textarea>
+            
+                <label for="skills">Skills:</label>
+                <textarea id="skills" name="skills" rows="4"></textarea>
+            
+                
+            
+                <button type="submit">Save</button>
+            </form>
+            
+        </section>
+    </main>
+
+   
+
+</body>
+
+</html>

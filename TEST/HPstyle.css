@@ -8,7 +8,10 @@ body, html {
 .header {
     background-color: #f86060;
     color: white;
-    padding: 1vh; 
+    padding: 1vh 2vw; 
+    position: sticky;
+    top: 0; 
+    z-index: 1000; 
 }
 
 .container {

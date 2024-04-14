@@ -1,0 +1,91 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-size: 16px; 
+    background-image: url('photo/depositphotos_211633178-stock-photo-user-profile-icon-user-profile.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+   
+}
+
+.header {
+    background-color: #6ca1c48f;
+    color: white;
+    padding: 1vh 2vw;
+    position: sticky; 
+    
+    width: 100%; 
+  padding-top: 0 ;
+  top: 0;
+    z-index: 1000; 
+}
+
+
+@media only screen and (max-width: 320px) { 
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-content2 h2 {
+        margin: 0.2em; 
+        font-size: 0.9em; 
+    }
+}
+
+
+.profile-section {
+    margin-top: 22vh;
+}
+
+.container {
+    max-width: 90vw; 
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+}
+
+.header-content1, .header-content2 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1vh; 
+    padding: 0.5em; 
+}
+
+.header-content2 h2 {
+    margin: 0.3em; 
+    font-size: 1em; 
+}
+
+.profile-section {
+    margin: 2em;
+}
+
+.profile-section form {
+    margin-bottom: 1em;
+}
+
+.profile-section label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.profile-section input {
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+
+.profile-section button {
+    padding: 0.5em 1em;
+    background-color: #f86060;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.profile-section button:hover {
+    background-color: #d84343;
+}
