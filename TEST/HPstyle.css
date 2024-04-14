@@ -5,17 +5,25 @@ body, html {
     font-size: 16px; 
 }
 
+.header-content1 img {
+    width: 100px; 
+    
+    margin-right: 10px; 
+    margin-left: 50px;
+    vertical-align: middle; 
+}
+
 .header {
     background-color: #f86060;
     color: white;
-    padding: 1vh 2vw; 
+   
     position: sticky;
     top: 0; 
     z-index: 1000; 
 }
 
 .container {
-    max-width: 90vw; 
+    max-width: 80vw; 
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -25,13 +33,13 @@ body, html {
 .header-content1, .header-content2 {
     display: flex;
     align-items: center;
-    margin-bottom: 1vh; 
-    padding: 0.5em; 
+    margin-bottom: 0.01vh; 
+    padding: 0.1em; 
 }
 
 .header-content2 h2 {
-    margin-left: 1vw; 
-    font-size: 1.2em; 
+    margin-left: 1.2vw; 
+    font-size: 1.7em; 
 }
 
 .full-screen-image {
@@ -65,8 +73,10 @@ header h1 a {
 
     .header-content2 h2 {
         margin: 0.3em;
-        margin-left: 0;
+        
         text-align: center; 
+        font-size: 1em; 
+        margin-left: 0.5vw; 
     }
 }
 
@@ -92,3 +102,4 @@ header h1 a {
         margin: 0.2em; 
     }
 }
+

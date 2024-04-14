@@ -3,22 +3,26 @@ body, html {
     padding: 0;
     height: 100%;
     font-size: 16px; 
-    background-image: url('photo/depositphotos_211633178-stock-photo-user-profile-icon-user-profile.jpg');
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /*background-image: url('photo/depositphotos_211633178-stock-photo-user-profile-icon-user-profile.jpg');*/
+    background-color: #A5DD9B;
     background-size: cover;
     background-repeat: no-repeat;
    
 }
 
 .header {
-    background-color: #6ca1c48f;
+    background-color: #C5EBAA;
     color: white;
-    padding: 1vh 2vw;
+   
     position: sticky; 
     
     width: 100%; 
   padding-top: 0 ;
   top: 0;
     z-index: 1000; 
+    height: auto;
+    
 }
 
 
@@ -40,6 +44,7 @@ body, html {
 }
 
 .container {
+    padding: 10px;
     max-width: 90vw; 
     margin: 0 auto;
     display: flex;
@@ -51,7 +56,7 @@ body, html {
     display: flex;
     align-items: center;
     margin-bottom: 1vh; 
-    padding: 0.5em; 
+    padding: 0.001px; 
 }
 
 .header-content2 h2 {
@@ -63,9 +68,16 @@ body, html {
     margin: 2em;
 }
 
-.profile-section form {
-    margin-bottom: 1em;
+
+
+.profile-section {
+    margin: 2em;
+    padding: 2em;
+    border-radius: 15px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff; 
 }
+
 
 .profile-section label {
     display: block;
@@ -80,12 +92,12 @@ body, html {
 
 .profile-section button {
     padding: 0.5em 1em;
-    background-color: #f86060;
+    background-color: #F2C18D;
     color: white;
     border: none;
     cursor: pointer;
 }
 
 .profile-section button:hover {
-    background-color: #d84343;
+    background-color: #F2C18D;
 }
