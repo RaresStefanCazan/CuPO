@@ -1,30 +1,51 @@
 body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
-    font-size: 16px; 
+    height : 20%;
+    font-size: 1rem; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /*background-image: url('photo/depositphotos_211633178-stock-photo-user-profile-icon-user-profile.jpg');*/
-    background-color: #A5DD9B;
+    background-color: #f86060; 
     background-size: cover;
     background-repeat: no-repeat;
-   
+
 }
 
 .header {
-    background-color: #C5EBAA;
+    background-color: #f68787;
     color: white;
-   
     position: sticky; 
-    
     width: 100%; 
-  padding-top: 0 ;
-  top: 0;
+    padding-top: 0;
+    top: 0;
     z-index: 1000; 
     height: auto;
-    
 }
 
+.header-content1 {
+    display: flex;
+    justify-content: center;
+    width: 100%; /* Make sure it occupies the full width */
+}
+
+.header-content1 a {
+    color: white;
+    text-decoration: none;
+}
+
+.header-content1 a:hover {
+    text-decoration: none;
+    color: white; 
+}
+
+.profile-section a {
+    color: white;
+    text-decoration: none; 
+}
+
+.profile-section a:hover {
+    text-decoration: none;
+    color: white; 
+}
 
 @media only screen and (max-width: 320px) { 
     .container {
@@ -38,13 +59,12 @@ body, html {
     }
 }
 
-
 .profile-section {
-    margin-top: 22vh;
+    margin-top: 5vh; /* Adjust the value as needed */
 }
 
 .container {
-    padding: 10px;
+    padding: 1vw; /* Relative padding */
     max-width: 90vw; 
     margin: 0 auto;
     display: flex;
@@ -52,23 +72,12 @@ body, html {
     flex-wrap: wrap; 
 }
 
-.header-content1, .header-content2 {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1vh; 
-    padding: 0.001px; 
-}
+
 
 .header-content2 h2 {
     margin: 0.3em; 
     font-size: 1em; 
 }
-
-.profile-section {
-    margin: 2em;
-}
-
-
 
 .profile-section {
     margin: 2em;
@@ -78,26 +87,13 @@ body, html {
     background-color: #ffffff; 
 }
 
-
 .profile-section label {
     display: block;
     margin-bottom: 0.5em;
 }
 
 .profile-section input {
-    width: 100%;
+    width: 100%; /* Relative width */
     padding: 0.5em;
     margin-bottom: 1em;
-}
-
-.profile-section button {
-    padding: 0.5em 1em;
-    background-color: #F2C18D;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.profile-section button:hover {
-    background-color: #F2C18D;
 }

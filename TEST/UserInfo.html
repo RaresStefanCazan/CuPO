@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <link rel="stylesheet" href="styles-User.css"> 
+    <link rel="stylesheet" href="styles-User.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
 </head>
 
 <body>
@@ -13,14 +14,8 @@
     <header class="header">
         <div class="container">
             <div class="header-content1">
-                <h1><a href="HomePage.html">Home</a></h1>
-            </div>
-            <div class="header-content2">
-                <h2><a href="Recipes.html">Recipes</a></h2>
-                <h2><a href="Login.html">Login</a></h2>
-                <h2><a href="Info.html">Info</a></h2>
-                <h2><a href="CulinaryPreferences.html">Culinary Preferences</a></h2>
-                <h2><a href="UserInfo.html">Profile</a></h2>
+                <h1><a href="HomePage.html">Home</a></a></h1>
+      
             </div>
         </div>
     </header>
@@ -34,7 +29,7 @@
             <form id="photo-form">
                 <label for="photo">Upload Photo:</label>
                 <input type="file" id="photo" name="photo">
-                <button type="submit">Upload</button>
+                <button type="button" class="btn btn-outline-success">Upload</button>
             </form>
 
           
@@ -84,9 +79,10 @@
             
                 
             
-                <button type="submit">Save</button>
+                
+                </button>
             </form>
-            
+            <button type="button" class="btn btn-primary btn-lg">Save
         </section>
     </main>
 
