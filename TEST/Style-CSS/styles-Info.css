@@ -13,7 +13,7 @@ header {
 
 main {
     padding: 20px;
-    min-height: calc(100vh - 160px); /* Adjust based on header and footer height */
+    min-height: calc(100vh - 160px); 
 }
 
 .info-section {

@@ -24,7 +24,7 @@ body, html {
 .header-content1 {
     display: flex;
     justify-content: center;
-    width: 100%; /* Make sure it occupies the full width */
+    width: 100%; 
 }
 
 .header-content1 a {
