@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f8f8f8;
     padding: 20px;
-    background-image: url('photo/background.jpg');
+    background-image: url('../photo/background.jpg');
 }
 
 header {
@@ -10,26 +10,23 @@ header {
     color: white;
     text-align: center;
     padding:  0;
-    margin-top: 0;
-   
+    margin-top: 0; 
 }
 
 header h1 a{
     margin-top: 0;
     font-size: 24px;
-    
     background-color: #1e9f545d;
     color: white;
-
     display: inline;
     border-radius: 10px;
     padding: 10px 10px;
     text-decoration: none;
 }
+
 header h1 a:hover{
     text-decoration: underline;
 }
-
 
 .manage-text-container{
     text-align: center;
@@ -44,7 +41,6 @@ header h1 a:hover{
     border-radius: 30px;
     padding: 0.8%;
     margin-bottom: 10px;
-    
 }
 
 form {
@@ -83,4 +79,9 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #0056b3;
+}
+
+img {
+    width: 100%;
+    height: auto;
 }

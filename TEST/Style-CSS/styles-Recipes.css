@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f8f8f8;
     padding: 20px;
-    background-image: url('photo/background.jpg');
+    background-image: url('../photo/background.jpg');
 }
 
 header {
@@ -107,6 +107,10 @@ body:not(:target) .scroll-up {
 
 .scroll-up:hover {
     background-color: #99ab5e;
+}
+
+.scroll-up {
+    background-color: #1e9f54; 
 }
 
 

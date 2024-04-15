@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Image</title>
+    <link rel="stylesheet" href="../Style-CSS/HPstyle.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content1">
+                <h1><a href="../Html/HomePage.html"><img src="../photo/Cupo.png" alt="Logo">Home</a></h1>
+            </div>
+            <div class="header-content2">
+                <h2><a href="../Html/Recipes.html" class="recipes-hover">Recipes</a></h2>
+                <h2><a href="../Html/CulinaryPreferences.html">Culinary Preferences</a></h2>
+                <h2><a href="../Html/Login.html">Login</a></h2>
+                <h2><a href="../Html/UserInfo.html">Profile</a></h2>
+                <h2><a href="../Html/Info.html">Info</a></h2>
+            </div>
+        </div>
+    </header>
+    
+    <div class="hover-area">
+        <div class="image-container">
+            <div class="image-wrapper">
+                <a href="../Html/image1.html">
+                    <img src="../photo/170206165040-dubai-michelin-dining-boca.webp" alt="Image 1">
+                    <span class="image-name">Seafood paella</span>
+                </a>
+            </div>
+            <div class="image-wrapper">
+                <a href="../Html/image2.html">
+                    <img src="../photo/140430115517-06-comfort-foods.webp" alt="Image 2">
+                    <span class="image-name">Lasagna</span>
+                </a>
+            </div>
+            <div class="image-wrapper">
+                <a href="../Html/image3.html">
+                    <img src="../photo/170203151539-fajitas.webp" alt="Image 3">
+                    <span class="image-name">Fajitas</span>
+                </a>
+            </div>
+            <div class="image-wrapper">
+                <a href="../Html/image4.html">
+                    <img src="../photo/170209172755-hummus.webp" alt="Image 4">
+                    <span class="image-name">Hummus</span>
+                </a>
+            </div>
+            <div class="image-wrapper">
+                <a href="../Html/image5.html">
+                    <img src="../photo/170302143134-tofu.webp" alt="Image 5">
+                    <span class="image-name">Stinky tofu</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-screen-image"></div>
+
+
+    <script>
+        //document.querySelector('.image-container').style.display = 'none';
+
+        document.querySelector('.recipes-hover').addEventListener('mouseover', function() {
+            document.querySelector('.hover-area').style.display = 'block';
+        });
+        document.querySelector('.hover-area').addEventListener('mouseleave', function() {
+            document.querySelector('.hover-area').style.display = 'none';
+        });
+        
+    </script>
+</body>
+</html>
