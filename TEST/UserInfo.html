@@ -14,8 +14,7 @@
     <header class="header">
         <div class="container">
             <div class="header-content1">
-                <h1><a href="HomePage.html">Home</a></a></h1>
-      
+                <h1><a href="HomePage.html">Home</a></h1>
             </div>
         </div>
     </header>
@@ -29,8 +28,8 @@
             <form id="photo-form">
                 <label for="photo">Upload Photo:</label>
                 <input type="file" id="photo" name="photo">
-                <button type="button" class="btn btn-outline-success">Upload</button>
             </form>
+            <button type="button" class="btn btn-outline-success">Upload</button>
 
           
             <form id="personal-info-form">
@@ -56,7 +55,6 @@
                 <select id="gender" name="gender">
                     <option value="male">Male</option>
                     <option value="female">Female</option>
-                    
                 </select>
             
                 <label for="phone">Phone Number:</label>
@@ -77,16 +75,16 @@
                 <label for="skills">Skills:</label>
                 <textarea id="skills" name="skills" rows="4"></textarea>
             
-                
-            
-                
-                </button>
+                <button type="submit" class="btn btn-primary btn-lg" onclick="scrollToTop()">Save</button>
             </form>
-            <button type="button" class="btn btn-primary btn-lg">Save
         </section>
     </main>
 
-   
+    <script>
+        function scrollToTop() {
+            window.scrollTo(0, 0); // Scrolls to the top of the page
+        }
+    </script>
 
 </body>
 

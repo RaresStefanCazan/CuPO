@@ -7,17 +7,15 @@ body, html {
 }
 
 .header-content1 img {
-    width: 100px; 
-    
-    margin-right: 10px; 
-    margin-left: 50px;
+    width: 30%;
+    margin-right: 30%; 
+    margin-left: 1%; 
     vertical-align: middle; 
 }
 
 .header {
     background-color: #f86060;
     color: white;
-   
     position: sticky;
     top: 0; 
     z-index: 1000; 
@@ -102,5 +100,40 @@ header h1 a {
         margin-left: 0;
         margin: 0.2em; 
     }
+}
+
+.image-container {
+    flex-wrap: wrap;
+    margin-top: 20px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.image-wrapper img {
+    transition: transform 0.5s ease, margin-bottom 0.5s ease;
+    width: 120px;
+    height: auto;
+    border: 3px solid #f86060;
+    padding: 5px;
+}
+
+.image-wrapper:hover img {
+    transform: scale(1.5);
+    margin-bottom: 20px;
+}
+
+.hover-area {
+    display: none;
+    transition: opacity 0.5s ease; 
+}
+
+.hover-area.show {
+    display: block;
+}
+
+.image-name {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
 }
 
