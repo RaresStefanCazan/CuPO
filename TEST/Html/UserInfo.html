@@ -23,15 +23,13 @@
     <main>
         <section class="profile-section">
             <h2>User Profile</h2>
-            
-            
+
             <form id="photo-form">
                 <label for="photo">Upload Photo:</label>
                 <input type="file" id="photo" name="photo">
             </form>
             <button type="button" class="btn btn-outline-success">Upload</button>
-
-          
+            
             <form id="personal-info-form">
                 <label for="firstName">First Name:</label>
                 <input type="text" id="firstName" name="firstName" required>
@@ -75,8 +73,44 @@
                 <label for="skills">Skills:</label>
                 <textarea id="skills" name="skills" rows="4"></textarea>
             
+                <!-- Adăugarea de câmpuri pentru gestionarea metadatelor -->
+                <label for="category">Category:</label>
+                <input type="text" id="category" name="category">
+            
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price">
+            
+                <label for="ingredients">Ingredients:</label>
+                <textarea id="ingredients" name="ingredients" rows="4"></textarea>
+            
+                <label for="allergens">Allergens:</label>
+                <textarea id="allergens" name="allergens" rows="4"></textarea>
+            
+                <label for="vegetarian">Vegetarian:</label>
+                <input type="checkbox" id="vegetarian" name="vegetarian">
+            
+                <label for="perishable">Perishable:</label>
+                <input type="checkbox" id="perishable" name="perishable">
+            
+                <label for="expirationDate">Expiration Date:</label>
+                <input type="date" id="expirationDate" name="expirationDate">
+            
+                <label for="availability">Availability:</label>
+                <input type="text" id="availability" name="availability">
+            
+                <label for="season">Season:</label>
+                <input type="text" id="season" name="season">
+            
+                <label for="region">Region:</label>
+                <input type="text" id="region" name="region">
+            
+                <label for="restaurants">Specific Restaurants:</label>
+                <input type="text" id="restaurants" name="restaurants">
+            
+                <!-- Butonul de salvare -->
                 <button type="submit" class="btn btn-primary btn-lg" onclick="scrollToTop()">Save</button>
             </form>
+            
         </section>
     </main>
 
