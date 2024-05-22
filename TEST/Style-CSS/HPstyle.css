@@ -27,8 +27,11 @@ body, html {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap; 
+    justify-content: center;
 }
-
+.header-content1 {
+   align-items: center;
+}
 .header-content1, .header-content2 {
     display: flex;
     align-items: center;
@@ -37,7 +40,7 @@ body, html {
 }
 
 .header-content2 h2 {
-    margin-left: 1.2vw; 
+    margin-left: 1.5vw; 
     font-size: 1.7em; 
 }
 
@@ -52,6 +55,7 @@ body, html {
 .header-content2 h2 a {
     color: white;
     text-decoration: none;
+    
 }
 
 .header-content2 h2 a:hover {
@@ -74,12 +78,13 @@ header h1 a {
         margin: 0.3em;
         
         text-align: center; 
-        font-size: 1em; 
+        font-size: 0.6em; 
         margin-left: 0.5vw; 
+
     }
 }
 
-@media only screen and (min-width: 601px) and (max-width: 1024px) {
+@media only screen and (min-width: 801px) and (max-width: 1024px) {
     .container {
         max-width: 90vw; 
     }
@@ -87,16 +92,18 @@ header h1 a {
     .header-content2 h2 {
         margin-left: 0;
         text-align: center; 
+        margin: 0.15em; 
     }
 
-    .header-content2 h2 {
-        margin: 0.5em; 
-    }
 }
 
 @media only screen and (max-width: 360px) {
+
+    .container {
+        max-width: 90vw; 
+    }
     .header-content2 h2 {
-        font-size: 1em; 
+        font-size: 0.55em; 
         margin-left: 0;
         margin: 0.2em; 
     }
