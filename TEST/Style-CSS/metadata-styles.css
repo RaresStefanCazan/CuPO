@@ -1,0 +1,137 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.header {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 1em 0;
+}
+
+.header .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1em;
+}
+
+.header-content1 h1 {
+    display: flex;
+    align-items: center;
+}
+
+.header-content1 img {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.header-content2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+.header-content2 h2 {
+    margin: 0.5em 1em;
+    font-size: 1.2em;
+}
+
+.header-content2 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.header-content2 a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 2em 1em;
+}
+
+.metadata-section {
+    background: #fff;
+    margin: 1em 0;
+    padding: 2em;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.metadata-section h2 {
+    margin-bottom: 1em;
+}
+
+.metadata-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.metadata-section label {
+    margin: 0.5em 0 0.2em;
+    font-weight: bold;
+}
+
+.metadata-section input,
+.metadata-section textarea {
+    margin-bottom: 1em;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.metadata-section .btn {
+    display: inline-block;
+    padding: 0.7em 1.5em;
+    color: #fff;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: fit-content;
+}
+
+.metadata-section .btn:hover {
+    background-color: #45a049;
+}
+
+footer {
+    text-align: center;
+    padding: 1em 0;
+    background-color: #333;
+    color: #fff;
+    margin-top: 2em;
+}
+
+@media (max-width: 600px) {
+    .header .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-content2 {
+        flex-direction: column;
+    }
+
+    .header-content2 h2 {
+        margin: 0.5em 0;
+    }
+
+    .metadata-section form {
+        padding: 1em;
+    }
+}
