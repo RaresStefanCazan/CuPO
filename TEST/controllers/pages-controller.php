@@ -29,4 +29,5 @@ if (isset($_GET['page'])) {
     // Dacă 'page' nu este setat, putem redirecționa către o pagină implicită
     $controller->recipes();
 }
+#sddada
 ?>
