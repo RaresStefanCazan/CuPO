@@ -1,33 +1,41 @@
 <?php
-    // Controller pentru pagina "Recipes"
-    class PagesController {
-        public function recipes() {
-            require_once('/xampp/htdocs/CuPO/WEB/TEST/views/Html/Recipes.html');
-        }
-        public function shoppingList() {
-            require_once('/xampp/htdocs/CuPO/WEB/TEST/views/Html/ShoppingList.html');
-        }
+// Controller pentru pagina "Recipes"
+class PagesController {
+    public function recipes() {
+        echo "Loading Recipes Page";
+        // Path to the controller itself, might need to include specific recipe logic file if exists
+        require_once __DIR__ . '/../views/Html/Recipes.html';
     }
 
-// Creăm o instanță a controllerului
-$controller = new PagesController();
-
-// Verificăm dacă 'page' este setat în URL
-if (isset($_GET['page'])) {
-    // Obținem pagina din URL
-    $page = $_GET['page'];
-
-    // Verificăm dacă metoda există în controller
-    if (method_exists($controller, $page)) {
-        // Apelăm metoda
-        $controller->$page();
-    } else {
-        // Dacă metoda nu există, afișăm o eroare sau redirecționăm către o pagină de eroare
-        echo "Pagina nu a fost găsită";
+    public function shoppingList() {
+        echo "Loading Shopping List Page";
+        require_once __DIR__ . '/../views/Html/ShoppingList.html';
     }
-} else {
-    // Dacă 'page' nu este setat, putem redirecționa către o pagină implicită
-    $controller->recipes();
+
+    
+
+    public function handleRequest() {
+        // Verificăm dacă 'page' este setat în URL
+        if (isset($_GET['page'])) {
+            // Obținem pagina din URL
+            $page = $_GET['page'];
+
+            // Verificăm dacă metoda există în controller
+            if (method_exists($this, $page)) {
+                // Apelăm metoda
+                $this->$page();
+            } else {
+                // Dacă metoda nu există, afișăm o eroare sau redirecționăm către o pagină de eroare
+                echo "Pagina nu a fost găsită";
+            }
+        } else {
+            // Dacă 'page' nu este setat, putem redirecționa către o pagină implicită
+            $this->recipes();
+        }
+    }
 }
-#sddada
+
+// Creăm o instanță a controllerului și gestionăm cererea
+$controller = new PagesController();
+$controller->handleRequest();
 ?>

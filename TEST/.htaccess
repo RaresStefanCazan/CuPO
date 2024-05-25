@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^home/([^/]*)$ /CuPO/WEB/TEST/controllers/pages-controller.php?page=$1 [L]
