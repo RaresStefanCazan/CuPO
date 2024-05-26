@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/CuPO/WEB/TEST/views/Style-CSS/styles-shoppingList.css">
+</head>
+<body>
+    <header class = "header">
+        <div class="home-container">
+            <button type="button" class="btn btn-home" onclick="window.location.href='homeL'">Home</button>
+        </div>
+    </header>
+    <main>
+        <div class="createlist">
+            <h3>Create Your Shopping List</h3>
+            <form id="shopping-list-form">
+                <label for="food-item">Food Item:</label>
+                <input type="text" id="food-item" name="food-item" required>
+                <button type="submit" class="btn btn-outline-light">Add to List</button>
+            </form>
+        </div>
+        <h3>Your Shopping List</h3>
+        <table id="shopping-list">
+            <tr>
+                <th>Food Items</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                <td>Chicken</td>
+                <td>$10.99</td>
+            </tr>
+            <tr>
+                <td>Milk</td>
+                <td>$2.55</td>
+            </tr>
+            <tr>
+                <td>Eggs</td>
+                <td>$3.99</td>
+            </tr>
+        </table>
+        
+        <button type="button" class="btn btn-primary" id="export-csv">Export CSV</button>
+        <button id="export-pdf" type="button" class="btn btn-primary">Export PDF</button>
+    </main>
+</body>
+</html>

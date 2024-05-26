@@ -26,39 +26,48 @@ body, html {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap; 
-    justify-content: center;
+    align-items: center; /* Center items vertically */
 }
-.header-content1 {
-   align-items: center;
+
+.header-left, .header-middle, .header-right {
+    display: flex;
+    align-items: center;
 }
-.header-content1, .header-content2 {
+
+.header-content1, .header-content2, .header-content3 {
     display: flex;
     align-items: center;
     margin-bottom: 0.01vh; 
     padding: 0.1em; 
 }
 
-.header-content2 h2 {
+.header-content2 h2, .header-content3 h2 {
     margin-left: 1.5vw; 
     font-size: 1.7em; 
 }
 
+.header-content3 {
+    flex-direction: column;
+}
+
+.header-content3 h2 {
+    margin: 0.5em 0;
+}
+
 .full-screen-image {
-    background-image: url('../photo/snack-bento-box-1296x728-header.webp');
+    background-image: url('../photo/download\ \(1\).jpeg');
     background-size: cover;
     background-position: center;
     width: 100vw; 
     height: calc(100vh - 10vh); 
 }
 
-.header-content2 h2 a {
+.header-content2 h2 a, .header-content3 h2 a {
     color: white;
     text-decoration: none;
-    
 }
 
-.header-content2 h2 a:hover {
+.header-content2 h2 a:hover, .header-content3 h2 a:hover {
     text-decoration: underline;
 }
 
@@ -67,20 +76,21 @@ header h1 a {
     text-decoration: none;
 }
 
-
 @media only screen and (max-width: 600px) {
     .container {
         flex-direction: column;
         align-items: center; 
     }
 
-    .header-content2 h2 {
+    .header-content2 h2, .header-content3 h2 {
         margin: 0.3em;
-        
         text-align: center; 
         font-size: 0.6em; 
         margin-left: 0.5vw; 
+    }
 
+    .header-content3 {
+        align-items: center;
     }
 }
 
@@ -89,23 +99,25 @@ header h1 a {
         max-width: 90vw; 
     }
 
-    .header-content2 h2 {
+    .header-content2 h2, .header-content3 h2 {
         margin-left: 0;
         text-align: center; 
         margin: 0.15em; 
     }
-
 }
 
 @media only screen and (max-width: 360px) {
-
     .container {
         max-width: 90vw; 
     }
-    .header-content2 h2 {
+    .header-content2 h2, .header-content3 h2 {
         font-size: 0.55em; 
         margin-left: 0;
         margin: 0.2em; 
+    }
+
+    .header-content3 {
+        align-items: center;
     }
 }
 
@@ -144,5 +156,3 @@ header h1 a {
 .hover-area.show {
     display: block;
 }
-
-

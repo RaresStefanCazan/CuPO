@@ -3,6 +3,7 @@
 class PagesController {
     private $pages = [
         'home' => '/../views/Html/HomePage.html',
+        'homeL' => '/../views/Html/HomePageL.html',
         'recipes' => '/../views/Html/Recipes.html',
         'shoppingList' => '/../views/Html/ShoppingList.html',
         'statistics' => '/../views/Html/Statistics.html',
@@ -16,7 +17,7 @@ class PagesController {
     ];
 
     public function handleRequest() {
-        $page = $_GET['page'] ?? 'recipes';
+        $page = $_GET['page'] ?? 'homeL';
 
         if (array_key_exists($page, $this->pages)) {
             return $this->pages[$page];
