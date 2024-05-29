@@ -1,17 +1,15 @@
 body, html {
-    background-color: #f86060;
+    background-color: 	#F5F5DC;
     color: white;
 }
 
 header {
-    background-color: #f68787;
     padding: 10px 0;
     text-align: center;
 }
 
 .home-container {
     display: inline-block;
-    background-color: #f68787;
     padding: 10px;
     border-radius: 5px;
 }
@@ -19,7 +17,7 @@ header {
 .btn-home {
     font-size: 1.5em;
     color: white;
-    background-color: #f86060;
+    background-color: 	#F5F5DC;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -63,7 +61,7 @@ label, button {
 }
 
 #shopping-list th {
-    padding-top: 12px;
+    padding-top: 13px;
     padding-bottom: 12px;
     text-align: left;
     background-color: #04AA6D;
