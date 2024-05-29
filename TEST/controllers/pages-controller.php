@@ -14,6 +14,7 @@ class PagesController {
         'forgot' => '/../views/Html/ForgotPassword.html',
         'userInfo' => '/../views/Html/UserInfo.html',
         'info' => '/../views/Html/Info.html',
+        'database' => '/../model/database.php'
     ];
 
     public function handleRequest() {
