@@ -1,0 +1,71 @@
+body, html {
+    background-color: #f86060;
+    color: white;
+}
+
+header {
+    background-color: #f68787;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.home-container {
+    display: inline-block;
+    background-color: #f68787;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btn-home {
+    font-size: 1.5em;
+    color: white;
+    background-color: #f86060;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+h2 {
+    font-size: 3em;
+}
+
+h3 {
+    font-size: 3em;
+}
+
+label, button {
+    font-size: 1.5em;
+}
+
+.createlist {
+    margin-bottom: 10vh;
+}
+
+#shopping-list {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white; 
+}
+
+#shopping-list td, #shopping-list th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    color: black;  
+}
+
+#shopping-list tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#shopping-list tr:hover {
+    background-color: #ddd;
+}
+
+#shopping-list th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
