@@ -14,7 +14,10 @@ class PagesController {
         'forgot' => '/../views/Html/ForgotPassword.html',
         'userInfo' => '/../views/Html/UserInfo.html',
         'info' => '/../views/Html/Info.html',
-        'database' => '/../model/database.php'
+        'database' => '/../model/database.php',
+        'register-con' => '/../controllers/register-controller.php',
+        'login-con' => '/../controllers/login-controller.php',
+
     ];
 
     public function handleRequest() {
