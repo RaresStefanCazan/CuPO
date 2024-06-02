@@ -1,7 +1,47 @@
-<main>
-    <h2>Food Statistics</h2>
-    <canvas id="statistics-chart"></canvas>
-    
-    <button id="export-csv">Export CSV</button>
-    <button id="export-pdf">Export PDF</button>
-</main>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Statistics</title>
+    <link rel="stylesheet" href="/CuPO/WEB/TEST/views/Style-CSS/styles-statistics.css">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="home-container">
+            <h1><a href="homeL">Home</a></h1>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <h2>Food Statistics</h2>
+            <div class="statistics-grid">
+                <div class="stat-box">
+                    <h3>Milk</h3>
+                    <p>Price: $5.00</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Eggs</h3>
+                    <p>Price: $2.50</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Chicken</h3>
+                    <p>Price: $7.50</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Beef</h3>
+                    <p>Price: $10.75</p>
+                </div>
+                <div class="stat-box add-more">
+                    <p>Add More</p>
+                </div>
+            </div>
+            <button id="export-csv">Export CSV</button>
+            <button id="export-pdf">Export PDF</button>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Food Statistics. All rights reserved.</p>
+    </footer>
+</body>
+</html>

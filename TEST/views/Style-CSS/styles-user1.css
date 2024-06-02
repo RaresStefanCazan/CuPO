@@ -4,7 +4,7 @@ body, html {
     height: 100%;
     font-size: 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
+    background-color: #ffffff;
     color: #282828;
 }
 
@@ -13,10 +13,9 @@ body, html {
     color: #282828;
     position: sticky;
     top: 0;
-    z-index: 1000;
     padding: 1rem 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: top 0.3s;
+    transition: top 0.5s;
 }
 
 .header-content1 {
@@ -52,7 +51,7 @@ body, html {
     margin-bottom: 1em;
     font-size: 1.5em;
     text-align: center;
-    color: #343a40;
+    color: #282828;
 }
 
 .profile-section label {

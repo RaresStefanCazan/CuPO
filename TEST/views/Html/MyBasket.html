@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/CuPO/WEB/TEST/views/Style-CSS/styles-mybasket1.css">
+</head>
+
+<body>
+    <header class="header" id="header">
+        <div class="home-container">
+            <h1><a href="homeL">Home</a></h1>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <h2>My basket</h2>
+            <ul class="responsive-table">
+                <li class="table-header">
+                    <div class="col col-1">Food Item</div>
+                    <div class="col col-2">Price</div>
+                </li>
+                <li class="table-row">
+                    <div class="col col-1" data-label="Food Item">milk</div>
+                    <div class="col col-2" data-label="Price">5.00$</div>
+                </li>
+                <li class="table-row">
+                    <div class="col col-1" data-label="Food Item">eggs</div>
+                    <div class="col col-2" data-label="Price">2.50$</div>
+                </li>
+                <li class="table-row">
+                    <div class="col col-1" data-label="Food Item">chicken</div>
+                    <div class="col col-2" data-label="Price">7.50$</div>
+                </li>
+                <li class="table-row">
+                    <div class="col col-1" data-label="Food Item">beef</div>
+                    <div class="col col-2" data-label="Price">10.75$</div>
+                </li>
+                <li class="table-row">
+                    <div class="col col-1" data-label="Food Item">beef</div>
+                    <div class="col col-2" data-label="Price">10.75$</div>
+                </li>
+                <li class="table-row">
+                    <div class="col col-1" data-label="Food Item">beef</div>
+                    <div class="col col-2" data-label="Price">10.75$</div>
+                </li>
+                <li class="table-row">
+                    <div class="col col-1" data-label="Food Item">beef</div>
+                    <div class="col col-2" data-label="Price">10.75$</div>
+                </li>
+                <li class="table-row">
+                    <div class="col col-1" data-label="Food Item">beef</div>
+                    <div class="col col-2" data-label="Price">10.75$</div>
+                </li>
+                <li class="table-row">
+                    <div class="col col-1" data-label="Food Item">beef</div>
+                    <div class="col col-2" data-label="Price">10.75$</div>
+                </li>
+                <li class="table-row">
+                    <div class="col col-1" data-label="Food Item">beef</div>
+                    <div class="col col-2" data-label="Price">10.75$</div>
+                </li>
+                <li class="table-row">
+                    <div class="col col-1" data-label="Food Item">beef</div>
+                    <div class="col col-2" data-label="Price">10.75$</div>
+                </li>
+                <li class="table-row">
+                    <div class="col col-1" data-label="Food Item">beef</div>
+                    <div class="col col-2" data-label="Price">10.75$</div>
+                </li>
+                <li class="table-row">
+                    <div class="col col-1" data-label="Food Item">beef</div>
+                    <div class="col col-2" data-label="Price">10.75$</div>
+                </li>
+            </ul>
+        </div>
+
+        <button type="button" class="btn btn-primary" id="export-csv">Export CSV</button>
+        <button id="export-pdf" type="button" class="btn btn-primary">Export PDF</button>
+    </main>
+    <script>
+        function scrollToTop() {
+            window.scrollTo(0, 0);
+        }
+
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function () {
+            const header = document.getElementById('header');
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+            if (st > lastScrollTop) {
+                header.style.top = '-100px';
+            } else {
+                header.style.top = '0';
+            }
+            lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+        }, false);
+    </script>
+</body>
+
+</html>

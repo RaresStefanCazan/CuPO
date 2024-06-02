@@ -5,21 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <link rel="stylesheet" href="/CuPO/WEB/TEST/views/Style-CSS/styles-User.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="/CuPO/WEB/TEST/views/Style-CSS/styles-user1.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
-   
-    <header class="header">
+    <header class="header" id="header">
         <div class="container">
             <div class="header-content1">
-                <h1><a href="../Html/HomePage.html">Home</a></h1>
+                <h1><a href="homeL">Home</a></h1>
             </div>
         </div>
     </header>
 
-    
     <main>
         <section class="profile-section">
             <h2>User Profile</h2>
@@ -29,97 +27,101 @@
                 <input type="file" id="photo" name="photo">
             </form>
             <button type="button" class="btn btn-outline-success">Upload</button>
-            
+
             <form id="personal-info-form">
                 <label for="firstName">First Name:</label>
                 <input type="text" id="firstName" name="firstName" required>
-            
+
                 <label for="lastName">Last Name:</label>
                 <input type="text" id="lastName" name="lastName" required>
-            
+
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
-            
+
                 <label for="birthdate">Date of Birth:</label>
                 <input type="date" id="birthdate" name="birthdate" required>
-            
+
                 <label for="weight">Weight (kg):</label>
                 <input type="number" id="weight" name="weight" required>
-            
+
                 <label for="height">Height (cm):</label>
                 <input type="number" id="height" name="height" required>
-            
+
                 <label for="gender">Gender:</label>
                 <select id="gender" name="gender">
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
-            
+
                 <label for="phone">Phone Number:</label>
                 <input type="tel" id="phone" name="phone">
-            
+
                 <label for="address">Address:</label>
                 <textarea id="address" name="address" rows="3"></textarea>
-            
+
                 <label for="education">Highest Education:</label>
                 <input type="text" id="education" name="education">
-            
+
                 <label for="occupation">Occupation:</label>
                 <input type="text" id="occupation" name="occupation">
-            
+
                 <label for="interests">Interests:</label>
                 <textarea id="interests" name="interests" rows="4"></textarea>
-            
+
                 <label for="skills">Skills:</label>
                 <textarea id="skills" name="skills" rows="4"></textarea>
-            
-                <!-- Adăugarea de câmpuri pentru gestionarea metadatelor -->
+
                 <label for="category">Category:</label>
                 <input type="text" id="category" name="category">
-            
-                <label for="price">Price:</label>
+
+                <label for="price">Budget per week:</label>
                 <input type="number" id="price" name="price">
-            
-                <label for="ingredients">Ingredients:</label>
+
+                <label for="ingredients">Favorite ingredients:</label>
                 <textarea id="ingredients" name="ingredients" rows="4"></textarea>
-            
+
                 <label for="allergens">Allergens:</label>
                 <textarea id="allergens" name="allergens" rows="4"></textarea>
-            
-                <label for="vegetarian">Vegetarian:</label>
-                <input type="checkbox" id="vegetarian" name="vegetarian">
-            
-                <label for="perishable">Perishable:</label>
-                <input type="checkbox" id="perishable" name="perishable">
-            
-                <label for="expirationDate">Expiration Date:</label>
-                <input type="date" id="expirationDate" name="expirationDate">
-            
-                <label for="availability">Availability:</label>
-                <input type="text" id="availability" name="availability">
-            
-                <label for="season">Season:</label>
-                <input type="text" id="season" name="season">
-            
-                <label for="region">Region:</label>
-                <input type="text" id="region" name="region">
-            
+
+                <h5>Dietary Restrictions:</h5>
+                <div>
+                    <label class="checkbox-label" for="vegetarian">Vegetarian
+                        <input type="radio" id="vegetarian" name="diet" value="vegetarian">
+                    </label>
+                    <label class="checkbox-label" for="vegan">Vegan
+                        <input type="radio" id="vegan" name="diet" value="vegan">
+                    </label>
+                    <label class="checkbox-label" for="none">None
+                        <input type="radio" id="none" name="diet" value="none" checked>
+                    </label>
+                </div>
+
                 <label for="restaurants">Specific Restaurants:</label>
                 <input type="text" id="restaurants" name="restaurants">
-            
-                <!-- Butonul de salvare -->
+
                 <button type="submit" class="btn btn-primary btn-lg" onclick="scrollToTop()">Save</button>
             </form>
-            
         </section>
     </main>
 
     <script>
         function scrollToTop() {
-            window.scrollTo(0, 0); // Scrolls to the top of the page
+            window.scrollTo(0, 0);
         }
-    </script>
 
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+            console.log(`Scroll position: ${st}`);
+            if (st > lastScrollTop) {
+                header.style.top = '-100px';
+            } else {
+                header.style.top = '0';
+            }
+            lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+        }, false);
+    </script>
 </body>
 
 </html>
