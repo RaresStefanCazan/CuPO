@@ -18,7 +18,7 @@ class PagesController {
         'database' => '/../model/database.php',
         'register-con' => '/../controllers/register-controller.php',
         'login-con' => '/../controllers/login-controller.php',
-
+        
     ];
 
     public function handleRequest() {
