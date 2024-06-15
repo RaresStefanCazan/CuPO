@@ -5,7 +5,7 @@ class PagesController {
         'home' => '/../views/Html/HomePage.html',
         'homeL' => '/../views/Html/HomePageL.html',
         'recipes' => '/../views/Html/Recipes.html',
-        'shop' => '/../views/Html/Shop.html',
+        'shop' => '/../views/Html/Shop.php',
         'statistics' => '/../views/Html/Statistics.html',
         'mybasket' => '/../views/Html/MyBasket.html',
         'metadataManagement' => '/../views/Html/MetadataManagement.html',
@@ -18,7 +18,7 @@ class PagesController {
         'database' => '/../model/database.php',
         'register-con' => '/../controllers/register-controller.php',
         'login-con' => '/../controllers/login-controller.php',
-        
+        'foods-database' => '/../model/databases/create_and_populate_foods.php'
     ];
 
     public function handleRequest() {
