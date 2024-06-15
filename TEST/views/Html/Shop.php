@@ -39,6 +39,10 @@
                 echo '<p class="card-text">Season: ' . htmlspecialchars($food['availability_season']) . '</p>';
                 echo '<p class="card-text">Region: ' . htmlspecialchars($food['availability_region']) . '</p>';
                 echo '<p class="card-text">Restaurants: ' . htmlspecialchars($food['specific_restaurants']) . '</p>';
+                echo '<form action="/CuPO/WEB/TEST/controllers/add_to_basket.php" method="POST">';
+                echo '<input type="hidden" name="aliment_id" value="' . htmlspecialchars($food['id']) . '">';
+                echo '<button type="submit" class="btn btn-primary">Add to My Basket</button>';
+                echo '</form>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';

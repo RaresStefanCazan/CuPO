@@ -2,12 +2,13 @@
 
 class PagesController {
     private $pages = [
-        'home' => '/../views/Html/HomePage.html',
+       'home' => '/../views/Html/HomePage.html',
         'homeL' => '/../views/Html/HomePageL.html',
         'recipes' => '/../views/Html/Recipes.html',
         'shop' => '/../views/Html/Shop.php',
+        'basket' => '/../views/Html/Basket.php',
         'statistics' => '/../views/Html/Statistics.html',
-        'mybasket' => '/../views/Html/MyBasket.html',
+        'mybasket' => '/../views/Html/Basket.php',
         'metadataManagement' => '/../views/Html/MetadataManagement.html',
         'admin' => '/../views/Html/Admin.html',
         'login' => '/../views/Html/Login.html',
