@@ -19,7 +19,8 @@ class PagesController {
         'database' => '/../model/database.php',
         'register-con' => '/../controllers/register-controller.php',
         'login-con' => '/../controllers/login-controller.php',
-        'foods-database' => '/../model/databases/create_and_populate_foods.php'
+        'foods-database' => '/../model/databases/create_and_populate_foods.php',
+        'logout' => '/../controllers/logout.php'
     ];
 
     public function handleRequest() {
