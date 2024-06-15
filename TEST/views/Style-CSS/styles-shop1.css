@@ -5,46 +5,42 @@ html {
     height: 100%;
     font-size: 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: linear-gradient(90deg, transparent 0%, transparent 10%, rgb(202,122,129) 10%, rgb(202,122,129) calc(10% + 1px), transparent calc(10% + 1px), transparent 100%), linear-gradient(180deg, white 12%, transparent 12%), repeating-linear-gradient(180deg, #91C1E1 0px, #91C1E1 1px, transparent 1px, transparent 30px), linear-gradient(white,white);
-    color: #282828;
+    background: linear-gradient(to right, #ece9e6, #ffffff);
+    color: #333;
 }
 
 .header {
     text-align: center;
-    color: #282828;
+    color: #fff;
     position: fixed;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     transition: top 0.5s;
-    top : 0;
+    top: 0;
+    background-color: #3E4E50;
 }
 
 a {
-    color: #282828;
+    color: #fff;
     text-decoration: none;
 }
 
 a:hover {
-    text-decoration: none;
-}
-
-.header-content1 img {
-    width: 10%;
-    vertical-align: middle;
+    text-decoration: underline;
 }
 
 .basket {
     position: absolute;
-    top: 0px;
+    top: 0;
     right: 10px;
 }
-
 
 .basket a {
     display: flex;
     align-items: center;
     font-size: 1.2em;
+    color: #fff;
 }
 
 .basket img {
@@ -54,22 +50,23 @@ a:hover {
 }
 
 .basket-btn {
-    background-color: #f7f7f7;
-    color: #282828;
+    background-color: #3E4E50;
+    color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 1em;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .basket-btn:hover {
-    background-color: #131415;
+    background-color: #283437;
+    transform: scale(1.05);
 }
 
 .container {
-    padding: 20px;
+    padding: 80px 20px 20px 20px;
 }
 
 .grid {
@@ -84,19 +81,20 @@ a:hover {
 }
 
 .card {
-    background-color: white;
-    border: 1px solid #ddd;
+    background-color: #fff;
+    border: none;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
     text-align: center;
     width: 100%;
     max-width: 300px;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .card-img {
@@ -106,31 +104,31 @@ a:hover {
 }
 
 .card-body {
-    padding: 30px;
+    padding: 20px;
 }
 
 .card-title {
     margin: 10px 0;
     font-size: 1.25em;
     font-weight: bold;
+    color: #3E4E50;
 }
 
 .card-text {
-    color: #777;
+    color: #555;
     font-size: 1em;
 }
 
 .topnav {
     overflow: hidden;
-    position: sticky;
-    background-color: #e9e9e9;
+    background-color: #283437;
     padding: 10px 0;
 }
 
 .topnav a {
     float: left;
     display: block;
-    color: black;
+    color: #fff;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -138,13 +136,12 @@ a:hover {
 }
 
 .topnav a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: #3E4E50;
 }
 
 .topnav a.active {
-    background-color: white;
-    color: rgb(40, 40, 40);
+    background-color: #fff;
+    color: #3E4E50;
 }
 
 .topnav input[type=text] {

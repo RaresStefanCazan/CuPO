@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Page</title>
     <link rel="stylesheet" href="/CuPO/WEB/TEST/views/Style-CSS/styles-shop1.css">
 </head>
-
 <body>
     <header class="header text-center py-4" id="header">
         <div class="topnav">
@@ -33,16 +31,7 @@
                 echo '<h5 class="card-title">' . htmlspecialchars($food['aliment']) . '</h5>';
                 echo '<p class="card-text">Category: ' . htmlspecialchars($food['category']) . '</p>';
                 echo '<p class="card-text">Price: $' . htmlspecialchars($food['price']) . '</p>';
-                echo '<p class="card-text">Restrictions: ' . htmlspecialchars($food['restrictions']) . '</p>';
-                echo '<p class="card-text">Perishability: ' . htmlspecialchars($food['perishability']) . ' days</p>';
-                echo '<p class="card-text">Validity: ' . htmlspecialchars($food['validity']) . '</p>';
-                echo '<p class="card-text">Season: ' . htmlspecialchars($food['availability_season']) . '</p>';
-                echo '<p class="card-text">Region: ' . htmlspecialchars($food['availability_region']) . '</p>';
-                echo '<p class="card-text">Restaurants: ' . htmlspecialchars($food['specific_restaurants']) . '</p>';
-                echo '<form action="/CuPO/WEB/TEST/controllers/add_to_basket.php" method="POST">';
-                echo '<input type="hidden" name="aliment_id" value="' . htmlspecialchars($food['id']) . '">';
-                echo '<button type="submit" class="btn btn-primary">Add to My Basket</button>';
-                echo '</form>';
+                echo '<button onclick="addToCart(' . htmlspecialchars($food['id']) . ')" class="btn btn-primary">Add to My Basket</button>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
@@ -52,12 +41,24 @@
     </main>
 
     <script>
-        function scrollToTop() {
-            window.scrollTo(0, 0);
+        function addToCart(foodId) {
+            fetch('/CuPO/WEB/TEST/controllers/add_to_basket.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ food_id: foodId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => console.error('Error:', error));
         }
 
+        // Script pentru a ascunde și a afișa bara de navigare la scroll
         let lastScrollTop = 0;
-        window.addEventListener('scroll', function () {
+        window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
             const st = window.pageYOffset || document.documentElement.scrollTop;
             if (st > lastScrollTop) {
@@ -69,5 +70,4 @@
         }, false);
     </script>
 </body>
-
 </html>
