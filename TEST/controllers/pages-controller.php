@@ -7,7 +7,7 @@ class PagesController {
         'recipes' => '/../views/Html/Recipes.html',
         'shop' => '/../views/Html/Shop.php',
         'basket' => '/../views/Html/Basket.php',
-        'statistics' => '/../views/Html/Statistics.html',
+        //'statistics' => '/../views/Html/Statistics.html',
         'mybasket' => '/../views/Html/Basket.php',
         'metadataManagement' => '/../views/Html/MetadataManagement.html',
         'admin' => '/../views/Html/Admin.html',
@@ -20,7 +20,9 @@ class PagesController {
         'register-con' => '/../controllers/register-controller.php',
         'login-con' => '/../controllers/login-controller.php',
         'foods-database' => '/../model/databases/create_and_populate_foods.php',
-        'logout' => '/../controllers/logout.php'
+        'logout' => '/../controllers/logout.php',
+        'statistics' => '/../views/Html/Statistics.php'
+       
     ];
 
     public function handleRequest() {
