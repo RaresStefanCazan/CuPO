@@ -42,7 +42,7 @@
         // Check if there's a search query
         if (isset($_GET['query'])) {
             $query = $_GET['query'];
-            $foods = $shopController->searchFoods($query);
+            $foods = $shopController->getFoods($query);
         } else {
             $foods = $shopController->getFoods();
         }

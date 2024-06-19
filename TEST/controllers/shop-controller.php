@@ -1,24 +1,15 @@
 <?php
-require_once __DIR__ . '/../model/database.php';
+require_once __DIR__ . '/../model/ShopModel.php';
 
 class ShopController {
-    private $conn;
+    private $shopModel;
 
     public function __construct($conn) {
-        $this->conn = $conn;
+        $this->shopModel = new ShopModel($conn);
     }
 
     public function getFoods() {
-        $sql = "SELECT * FROM foods";
-        $result = $this->conn->query($sql);
-
-        $foods = [];
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $foods[] = $row;
-            }
-        }
-        return $foods;
+        return $this->shopModel->getFoods();
     }
 }
 ?>
