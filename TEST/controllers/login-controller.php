@@ -2,26 +2,28 @@
 require_once __DIR__ . '/../model/database.php';
 require_once __DIR__ . '/../model/UserModel.php';
 
+header('Content-Type: application/json');
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['email']) && isset($_POST['password'])) {
-        $username = $_POST['email'];
-        $password = $_POST['password'];
+    $data = json_decode(file_get_contents('php://input'), true);
+
+    if (isset($data['email']) && isset($data['password'])) {
+        $username = $data['email'];
+        $password = $data['password'];
 
         $userModel = new UserModel($conn);
         if ($userModel->login($username, $password)) {
-            // Login successful
-            header("Location: /home/homeL");
-            exit();
+            echo json_encode(['message' => 'Login successful']);
         } else {
-            
-            header("Location: /home/login");
-            echo "Invalid username orr password";
-            exit();
+            http_response_code(401);
+            echo json_encode(['message' => 'Invalid username or password']);
         }
     } else {
-        echo "Email or password not set in the form";
+        http_response_code(400);
+        echo json_encode(['message' => 'Email or password not set in the request']);
     }
 } else {
-    echo "Invalid request method";
+    http_response_code(405);
+    echo json_encode(['message' => 'Invalid request method']);
 }
 ?>
