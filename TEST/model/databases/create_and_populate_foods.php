@@ -27,10 +27,10 @@ $createTableSQL = "CREATE TABLE IF NOT EXISTS foods (
 
 // Adăugarea noilor coloane în tabela foods
 $alterTableSQL = "ALTER TABLE foods
-    ADD COLUMN gramaj INT,
-    ADD COLUMN proteine DECIMAL(5, 2),
-    ADD COLUMN fibre DECIMAL(5, 2),
-    ADD COLUMN kcal INT";
+    ADD COLUMN weight INT,
+    ADD COLUMN protein DECIMAL(5, 2),
+    ADD COLUMN fiber DECIMAL(5, 2),
+    ADD COLUMN calories INT";
 
 
 
@@ -103,54 +103,54 @@ if ($conn->query($insertDataSQL) === TRUE) {
 
 // Popularea noilor coloane cu date reale
 $updateDataSQL = "
-UPDATE foods SET gramaj = 182, proteine = 0.3, fibre = 4.4, kcal = 95 WHERE aliment = 'Apple';
-UPDATE foods SET gramaj = 400, proteine = 2.0, fibre = 9.0, kcal = 354 WHERE aliment = 'Coconut';
-UPDATE foods SET gramaj = 61, proteine = 0.9, fibre = 2.8, kcal = 25 WHERE aliment = 'Carrot';
-UPDATE foods SET gramaj = 91, proteine = 2.5, fibre = 2.4, kcal = 31 WHERE aliment = 'Broccoli';
-UPDATE foods SET gramaj = 244, proteine = 8.0, fibre = 0.0, kcal = 122 WHERE aliment = 'Milk';
-UPDATE foods SET gramaj = 118, proteine = 1.3, fibre = 3.1, kcal = 105 WHERE aliment = 'Banana';
-UPDATE foods SET gramaj = 182, proteine = 0.9, fibre = 1.5, kcal = 22 WHERE aliment = 'Tomato';
-UPDATE foods SET gramaj = 28, proteine = 7.0, fibre = 0.0, kcal = 110 WHERE aliment = 'Cheese';
-UPDATE foods SET gramaj = 174, proteine = 38.0, fibre = 0.0, kcal = 335 WHERE aliment = 'Chicken';
-UPDATE foods SET gramaj = 85, proteine = 26.0, fibre = 0.0, kcal = 213 WHERE aliment = 'Beef';
-UPDATE foods SET gramaj = 85, proteine = 19.0, fibre = 0.0, kcal = 206 WHERE aliment = 'Fish';
-UPDATE foods SET gramaj = 85, proteine = 18.0, fibre = 0.0, kcal = 84 WHERE aliment = 'Shrimp';
-UPDATE foods SET gramaj = 245, proteine = 9.0, fibre = 0.0, kcal = 154 WHERE aliment = 'Yogurt';
-UPDATE foods SET gramaj = 131, proteine = 1.2, fibre = 3.1, kcal = 62 WHERE aliment = 'Orange';
-UPDATE foods SET gramaj = 152, proteine = 1.1, fibre = 2.9, kcal = 49 WHERE aliment = 'Strawberry';
-UPDATE foods SET gramaj = 148, proteine = 1.1, fibre = 3.6, kcal = 84 WHERE aliment = 'Blueberry';
-UPDATE foods SET gramaj = 165, proteine = 0.9, fibre = 2.3, kcal = 83 WHERE aliment = 'Pineapple';
-UPDATE foods SET gramaj = 150, proteine = 3.0, fibre = 10.0, kcal = 240 WHERE aliment = 'Avocado';
-UPDATE foods SET gramaj = 50, proteine = 6.0, fibre = 0.0, kcal = 70 WHERE aliment = 'Egg';
-UPDATE foods SET gramaj = 14, proteine = 0.1, fibre = 0.0, kcal = 102 WHERE aliment = 'Butter';
-UPDATE foods SET gramaj = 36, proteine = 0.5, fibre = 1.0, kcal = 5 WHERE aliment = 'Lettuce';
-UPDATE foods SET gramaj = 30, proteine = 2.9, fibre = 0.8, kcal = 7 WHERE aliment = 'Spinach';
-UPDATE foods SET gramaj = 70, proteine = 1.0, fibre = 1.5, kcal = 20 WHERE aliment = 'Pepper';
-UPDATE foods SET gramaj = 110, proteine = 1.1, fibre = 3.0, kcal = 44 WHERE aliment = 'Onion';
-UPDATE foods SET gramaj = 30, proteine = 0.9, fibre = 2.8, kcal = 41 WHERE aliment = 'Garlic';
-UPDATE foods SET gramaj = 213, proteine = 2.0, fibre = 3.8, kcal = 163 WHERE aliment = 'Potato';
-UPDATE foods SET gramaj = 118, proteine = 1.2, fibre = 1.1, kcal = 21 WHERE aliment = 'Zucchini';
-UPDATE foods SET gramaj = 250, proteine = 1.0, fibre = 0.5, kcal = 30 WHERE aliment = 'Pumpkin';
-UPDATE foods SET gramaj = 89, proteine = 1.5, fibre = 2.2, kcal = 22 WHERE aliment = 'Cabbage';
-UPDATE foods SET gramaj = 104, proteine = 1.2, fibre = 1.5, kcal = 16 WHERE aliment = 'Cucumber';
-UPDATE foods SET gramaj = 116, proteine = 0.7, fibre = 1.6, kcal = 19 WHERE aliment = 'Radish';
-UPDATE foods SET gramaj = 101, proteine = 0.9, fibre = 1.6, kcal = 16 WHERE aliment = 'Celery';
-UPDATE foods SET gramaj = 166, proteine = 3.6, fibre = 2.6, kcal = 123 WHERE aliment = 'Corn';
-UPDATE foods SET gramaj = 96, proteine = 3.1, fibre = 1.4, kcal = 22 WHERE aliment = 'Mushroom';
-UPDATE foods SET gramaj = 151, proteine = 0.7, fibre = 0.9, kcal = 62 WHERE aliment = 'Grapes';
-UPDATE foods SET gramaj = 150, proteine = 1.0, fibre = 2.3, kcal = 59 WHERE aliment = 'Peach';
-UPDATE foods SET gramaj = 150, proteine = 0.5, fibre = 1.0, kcal = 46 WHERE aliment = 'Plum';
-UPDATE foods SET gramaj = 138, proteine = 1.0, fibre = 2.0, kcal = 87 WHERE aliment = 'Cherry';
-UPDATE foods SET gramaj = 84, proteine = 1.1, fibre = 2.4, kcal = 24 WHERE aliment = 'Lemon';
-UPDATE foods SET gramaj = 67, proteine = 0.5, fibre = 1.9, kcal = 20 WHERE aliment = 'Lime';
-UPDATE foods SET gramaj = 2800, proteine = 2.0, fibre = 0.5, kcal = 80 WHERE aliment = 'Watermelon';
-UPDATE foods SET gramaj = 500, proteine = 1.0, fibre = 2.0, kcal = 215 WHERE aliment = 'Papaya';
-UPDATE foods SET gramaj = 69, proteine = 1.1, fibre = 2.1, kcal = 42 WHERE aliment = 'Kiwi';
-UPDATE foods SET gramaj = 207, proteine = 1.1, fibre = 2.6, kcal = 201 WHERE aliment = 'Mango';
-UPDATE foods SET gramaj = 178, proteine = 0.5, fibre = 6.0, kcal = 102 WHERE aliment = 'Pear';
-UPDATE foods SET gramaj = 123, proteine = 1.5, fibre = 8.0, kcal = 53 WHERE aliment = 'Raspberry';
-UPDATE foods SET gramaj = 144, proteine = 1.0, fibre = 8.0, kcal = 62 WHERE aliment = 'Blackberry';
-UPDATE foods SET gramaj = 282, proteine = 5.0, fibre = 7.0, kcal = 234 WHERE aliment = 'Pomegranate';
+UPDATE foods SET weight = 182, protein = 0.3, fiber = 4.4, calories = 95 WHERE aliment = 'Apple';
+UPDATE foods SET weight = 400, protein = 2.0, fiber = 9.0, calories = 354 WHERE aliment = 'Coconut';
+UPDATE foods SET weight = 61, protein = 0.9, fiber = 2.8, calories = 25 WHERE aliment = 'Carrot';
+UPDATE foods SET weight = 91, protein = 2.5, fiber = 2.4, calories = 31 WHERE aliment = 'Broccoli';
+UPDATE foods SET weight = 244, protein = 8.0, fiber = 0.0, calories = 122 WHERE aliment = 'Milk';
+UPDATE foods SET weight = 118, protein = 1.3, fiber = 3.1, calories = 105 WHERE aliment = 'Banana';
+UPDATE foods SET weight = 182, protein = 0.9, fiber = 1.5, calories = 22 WHERE aliment = 'Tomato';
+UPDATE foods SET weight = 28, protein = 7.0, fiber = 0.0, calories = 110 WHERE aliment = 'Cheese';
+UPDATE foods SET weight = 174, protein = 38.0, fiber = 0.0, calories = 335 WHERE aliment = 'Chicken';
+UPDATE foods SET weight = 85, protein = 26.0, fiber = 0.0, calories = 213 WHERE aliment = 'Beef';
+UPDATE foods SET weight = 85, protein = 19.0, fiber = 0.0, calories = 206 WHERE aliment = 'Fish';
+UPDATE foods SET weight = 85, protein = 18.0, fiber = 0.0, calories = 84 WHERE aliment = 'Shrimp';
+UPDATE foods SET weight = 245, protein = 9.0, fiber = 0.0, calories = 154 WHERE aliment = 'Yogurt';
+UPDATE foods SET weight = 131, protein = 1.2, fiber = 3.1, calories = 62 WHERE aliment = 'Orange';
+UPDATE foods SET weight = 152, protein = 1.1, fiber = 2.9, calories = 49 WHERE aliment = 'Strawberry';
+UPDATE foods SET weight = 148, protein = 1.1, fiber = 3.6, calories = 84 WHERE aliment = 'Blueberry';
+UPDATE foods SET weight = 165, protein = 0.9, fiber = 2.3, calories = 83 WHERE aliment = 'Pineapple';
+UPDATE foods SET weight = 150, protein = 3.0, fiber = 10.0, calories = 240 WHERE aliment = 'Avocado';
+UPDATE foods SET weight = 50, protein = 6.0, fiber = 0.0, calories = 70 WHERE aliment = 'Egg';
+UPDATE foods SET weight = 14, protein = 0.1, fiber = 0.0, calories = 102 WHERE aliment = 'Butter';
+UPDATE foods SET weight = 36, protein = 0.5, fiber = 1.0, calories = 5 WHERE aliment = 'Lettuce';
+UPDATE foods SET weight = 30, protein = 2.9, fiber = 0.8, calories = 7 WHERE aliment = 'Spinach';
+UPDATE foods SET weight = 70, protein = 1.0, fiber = 1.5, calories = 20 WHERE aliment = 'Pepper';
+UPDATE foods SET weight = 110, protein = 1.1, fiber = 3.0, calories = 44 WHERE aliment = 'Onion';
+UPDATE foods SET weight = 30, protein = 0.9, fiber = 2.8, calories = 41 WHERE aliment = 'Garlic';
+UPDATE foods SET weight = 213, protein = 2.0, fiber = 3.8, calories = 163 WHERE aliment = 'Potato';
+UPDATE foods SET weight = 118, protein = 1.2, fiber = 1.1, calories = 21 WHERE aliment = 'Zucchini';
+UPDATE foods SET weight = 250, protein = 1.0, fiber = 0.5, calories = 30 WHERE aliment = 'Pumpkin';
+UPDATE foods SET weight = 89, protein = 1.5, fiber = 2.2, calories = 22 WHERE aliment = 'Cabbage';
+UPDATE foods SET weight = 104, protein = 1.2, fiber = 1.5, calories = 16 WHERE aliment = 'Cucumber';
+UPDATE foods SET weight = 116, protein = 0.7, fiber = 1.6, calories = 19 WHERE aliment = 'Radish';
+UPDATE foods SET weight = 101, protein = 0.9, fiber = 1.6, calories = 16 WHERE aliment = 'Celery';
+UPDATE foods SET weight = 166, protein = 3.6, fiber = 2.6, calories = 123 WHERE aliment = 'Corn';
+UPDATE foods SET weight = 96, protein = 3.1, fiber = 1.4, calories = 22 WHERE aliment = 'Mushroom';
+UPDATE foods SET weight = 151, protein = 0.7, fiber = 0.9, calories = 62 WHERE aliment = 'Grapes';
+UPDATE foods SET weight = 150, protein = 1.0, fiber = 2.3, calories = 59 WHERE aliment = 'Peach';
+UPDATE foods SET weight = 150, protein = 0.5, fiber = 1.0, calories = 46 WHERE aliment = 'Plum';
+UPDATE foods SET weight = 138, protein = 1.0, fiber = 2.0, calories = 87 WHERE aliment = 'Cherry';
+UPDATE foods SET weight = 84, protein = 1.1, fiber = 2.4, calories = 24 WHERE aliment = 'Lemon';
+UPDATE foods SET weight = 67, protein = 0.5, fiber = 1.9, calories = 20 WHERE aliment = 'Lime';
+UPDATE foods SET weight = 2800, protein = 2.0, fiber = 0.5, calories = 80 WHERE aliment = 'Watermelon';
+UPDATE foods SET weight = 500, protein = 1.0, fiber = 2.0, calories = 215 WHERE aliment = 'Papaya';
+UPDATE foods SET weight = 69, protein = 1.1, fiber = 2.1, calories = 42 WHERE aliment = 'Kiwi';
+UPDATE foods SET weight = 207, protein = 1.1, fiber = 2.6, calories = 201 WHERE aliment = 'Mango';
+UPDATE foods SET weight = 178, protein = 0.5, fiber = 6.0, calories = 102 WHERE aliment = 'Pear';
+UPDATE foods SET weight = 123, protein = 1.5, fiber = 8.0, calories = 53 WHERE aliment = 'Raspberry';
+UPDATE foods SET weight = 144, protein = 1.0, fiber = 8.0, calories = 62 WHERE aliment = 'Blackberry';
+UPDATE foods SET weight = 282, protein = 5.0, fiber = 7.0, calories = 234 WHERE aliment = 'Pomegranate';
 ";
 
 if ($conn->multi_query($updateDataSQL) === TRUE) {
