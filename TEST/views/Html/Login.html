@@ -30,13 +30,13 @@
     <script>
         document.querySelector('#login-form').addEventListener('submit', function(event) {
             event.preventDefault();
-        
+    
             const formData = new FormData(this);
             const data = {
                 email: formData.get('email'),
                 password: formData.get('password')
             };
-
+    
             fetch('/home/login-con', {
                 method: 'POST',
                 headers: {
@@ -44,10 +44,17 @@
                 },
                 body: JSON.stringify(data)
             })
-            .then(response => response.json())
-            .then(data => {
+            .then(response => response.text())  // Schimbă în text pentru debugging
+            .then(text => {
+                console.log('Raw response:', text);  // Afișează răspunsul brut
+                const data = JSON.parse(text);  // Parsează răspunsul JSON
+                console.log('Parsed response:', data);  // Afișează răspunsul parsare
                 if (data.message === 'Login successful') {
-                    window.location.href = '/home/homeL';
+                    if (data.role === 'admin') {
+                        window.location.href = '/home/admin';
+                    } else {
+                        window.location.href = '/home/homeL';
+                    }
                 } else {
                     alert(data.message);
                 }
@@ -55,5 +62,7 @@
             .catch(error => console.error('Error:', error));
         });
     </script>
+    
+    
 </body>
 </html>

@@ -24,7 +24,7 @@
 
     <script>
         function loadBasketItems() {
-            fetch('/CuPO/WEB/TEST/controllers/view_basket.php')
+            fetch('/api/View')
             .then(response => response.json())
             .then(data => {
                 const basketItemsContainer = document.getElementById('basket-items');
@@ -61,7 +61,7 @@
         }
 
         function removeFromCart(foodId) {
-            fetch('/CuPO/WEB/TEST/controllers/remove_from_basket.php', {
+            fetch('/api/Remove', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

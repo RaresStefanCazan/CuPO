@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . '/../model/database.php';
 require_once __DIR__ . '/../model/UserModel.php';
 
@@ -12,8 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password = $data['password'];
 
         $userModel = new UserModel($conn);
-        if ($userModel->login($username, $password)) {
-            echo json_encode(['message' => 'Login successful']);
+        $loginResult = $userModel->login($username, $password);
+
+        if ($loginResult) {
+            $_SESSION['username'] = $username;
+            $_SESSION['role'] = $loginResult['role'];
+            echo json_encode(['message' => 'Login successful', 'role' => $loginResult['role']]);
         } else {
             http_response_code(401);
             echo json_encode(['message' => 'Invalid username or password']);
@@ -26,4 +31,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     http_response_code(405);
     echo json_encode(['message' => 'Invalid request method']);
 }
+
 ?>
