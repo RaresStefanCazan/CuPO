@@ -29,8 +29,10 @@ class PagesController {
         'View' => '/../controllers/view_basket.php',
         'Remove' => '/../controllers/remove_from_basket.php',
         'FoodsAdmin' => '/../views/Html/FoodsAdmin.php',
-         'users' => '/../controllers/UserAdminController.php',
-        'UsersAdmin' => '/../views/Html/UsersAdmin.php'
+        'users' => '/../controllers/UserAdminController.php',
+        'UsersAdmin' => '/../views/Html/UsersAdmin.php',
+        'lists' => '/../views/Html/lists.html',
+        
        
     ];
 

@@ -14,7 +14,7 @@
                 <input type="text" name="query" placeholder="Search for food..." class="search-input" id="searchInput">
             </form>
             <div class="basket">
-                <a href="/home/mybasket">
+                <a href="/home/lists">
                     <img src="/CuPO/WEB/TEST/views/photo/result.png" alt="Basket" class="basket-icon"> My Basket
                 </a>
             </div>
