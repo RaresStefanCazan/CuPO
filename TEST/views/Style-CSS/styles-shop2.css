@@ -20,6 +20,17 @@ body, html {
     background-color: #2b3637;
 }
 
+.sort-buttons {
+    margin-bottom: 20px;
+}
+.sort-buttons button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
+
 .nav-container {
     display: flex;
     justify-content: space-between;
@@ -33,12 +44,6 @@ body, html {
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.btn-home:hover {
-    background-color: #283437;
-    transform: scale(1.05);
 }
 
 .topnav-search {
