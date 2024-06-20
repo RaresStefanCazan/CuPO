@@ -6,12 +6,7 @@ header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $type = $_POST['type'];
-    $conn = new mysqli("localhost:3307", "root", "", "cupo_users"); // Adaugă portul 3307
-
-    if ($conn->connect_error) {
-        echo json_encode(["error" => "Connection failed: " . $conn->connect_error]);
-        exit();
-    }
+    
 
     $controller = new StatisticsController($conn);
     $data = [];
