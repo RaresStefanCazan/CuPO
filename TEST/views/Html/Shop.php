@@ -18,7 +18,7 @@
                     <img src="/CuPO/WEB/TEST/views/photo/result.png" alt="Basket" class="basket-icon"> My Basket
                 </a>
             </div>
-</div>
+        </div>
         <div class="search-results" id="searchResults"></div>
     </header>
     <main class="container mt-5">
@@ -207,6 +207,60 @@
             }
             lastScrollTop = st <= 0 ? 0 : st;
         }, false);
+
+        document.getElementById('addToCartForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const foodId = document.getElementById('foodId').value;
+    const listId = getCookie('currentListId'); // Assuming list_id is stored in a cookie
+    const quantity = document.getElementById('quantity').value;
+
+    console.log('foodId:', foodId); // Debugging line
+    console.log('listId:', listId); // Debugging line
+    console.log('quantity:', quantity); // Debugging line
+
+    if (!foodId || !listId) {
+        alert('Food ID and List ID are required');
+        return;
+    }
+
+    const postData = {
+        food_id: foodId,
+        list_id: listId,
+        quantity: quantity
+    };
+
+    console.log('Sending data:', postData); // Debugging line
+
+    fetch('/CuPO/WEB/TEST/controllers/add_to_basket.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Server response:', data); // Debugging line
+        alert(data.message);
+        closeModal(); // Close the modal after adding to basket
+    })
+    .catch(error => {
+        console.error('Error adding to basket:', error);
+    });
+});
+
+function getCookie(name) {
+    let cookieArr = document.cookie.split(";");
+    for (let i = 0; i < cookieArr.length; i++) {
+        let cookiePair = cookieArr[i].split("=");
+        if (name == cookiePair[0].trim()) {
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    return null;
+}
+
 
     </script>
 </body>

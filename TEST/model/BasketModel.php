@@ -6,24 +6,6 @@ class BasketModel {
         $this->conn = $conn;
     }
 
-    public function getBasketItems($item_ids) {
-        if (empty($item_ids)) {
-            return [];
-        }
-
-        $ids = implode(',', array_map('intval', $item_ids));
-        $sql = "SELECT * FROM foods WHERE id IN ($ids)";
-        $result = $this->conn->query($sql);
-
-        $items = [];
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $items[] = $row;
-            }
-        }
-        return $items;
-    }
-
     public function addToBasket($listId, $foodId) {
         $stmt = $this->conn->prepare("SELECT items FROM lists WHERE id = ?");
         $stmt->bind_param("i", $listId);
