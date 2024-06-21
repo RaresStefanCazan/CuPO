@@ -6,9 +6,9 @@ class ListsModel {
         $this->conn = $conn;
     }
 
-    public function getListsByUserId($userId) {
-        $stmt = $this->conn->prepare("SELECT * FROM lists WHERE user_id = ?");
-        $stmt->bind_param("i", $userId);
+    public function getAllLists($email) {
+        $stmt = $this->conn->prepare("SELECT * FROM lists WHERE emails LIKE CONCAT('%', ?, '%')");
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -20,10 +20,52 @@ class ListsModel {
         return $lists;
     }
 
-    public function createList($name, $userId) {
-        $stmt = $this->conn->prepare("INSERT INTO lists (name, created_by) VALUES (?, ?)");
-        $stmt->bind_param("si", $name, $userId);
+    public function createList($name, $email, $group) {
+        $emails = $email;
+        $stmt = $this->conn->prepare("INSERT INTO lists (name, emails, `group`) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $name, $emails, $group);
         return $stmt->execute();
     }
+
+    public function addEmailToList($listId, $email) {
+        $stmt = $this->conn->prepare("SELECT emails FROM lists WHERE id = ?");
+        $stmt->bind_param("i", $listId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $list = $result->fetch_assoc();
+
+        if ($list) {
+            $emails = $list['emails'];
+            $emailsArray = explode(',', $emails);
+
+            if (!in_array($email, $emailsArray)) {
+                $emailsArray[] = $email;
+                $updatedEmails = implode(',', $emailsArray);
+
+                $stmt = $this->conn->prepare("UPDATE lists SET emails = ? WHERE id = ?");
+                $stmt->bind_param("si", $updatedEmails, $listId);
+                return $stmt->execute();
+            }
+        }
+
+        return false;
+    }
+
+    public function getLastInsertId() {
+        return $this->conn->insert_id;
+    }
+
+    
+    public function getListById($listId) {
+        $stmt = $this->conn->prepare("SELECT * FROM lists WHERE id = ?");
+        $stmt->bind_param("i", $listId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+        
+    
+    
 }
+
 ?>

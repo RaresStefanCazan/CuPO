@@ -17,6 +17,7 @@
         <div class="filter-section">
             <h2>My Lists</h2>
             <button id="createListBtn">Create New List</button>
+            <button id="createGroupBtn">Create New Group</button>
         </div>
 
         <div class="grid" id="listsGrid">
@@ -39,10 +40,45 @@
         </div>
     </div>
 
+    <!-- Create Group Modal -->
+    <div id="createGroupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeGroupModal()">&times;</span>
+            <h2>Create New Group</h2>
+            <form id="createGroupForm">
+                <div class="form-group">
+                    <label for="groupName">Group Name:</label>
+                    <input type="text" id="groupName" name="groupName" required>
+                </div>
+                <button type="submit">Create</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Email Modal -->
+    <div id="addEmailModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEmailModal()">&times;</span>
+            <h2>Add Email to Group</h2>
+            <form id="addEmailForm">
+                <input type="hidden" id="listIdInput" name="listId">
+                <div class="form-group">
+                    <label for="emailInput">Email:</label>
+                    <input type="email" id="emailInput" name="email" required>
+                </div>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('createListBtn').addEventListener('click', function () {
                 document.getElementById('createListModal').style.display = 'block';
+            });
+
+            document.getElementById('createGroupBtn').addEventListener('click', function () {
+                document.getElementById('createGroupModal').style.display = 'block';
             });
 
             document.getElementById('createListForm').addEventListener('submit', function (event) {
@@ -54,7 +90,7 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ name: listName })
+                    body: JSON.stringify({ name: listName, group: 'no' })
                 })
                 .then(response => {
                     if (!response.ok) {
@@ -63,7 +99,6 @@
                     return response.json();
                 })
                 .then(data => {
-                    console.log('Response from server:', data);
                     if (data.success) {
                         alert('List created successfully');
                         loadLists();
@@ -78,8 +113,79 @@
                 });
             });
 
+            document.getElementById('createGroupForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+                const groupName = document.getElementById('groupName').value;
+
+                fetch('/CuPO/WEB/TEST/api/lists', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name: groupName, group: 'yes' })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(text => { throw new Error(text) });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        alert('Group created successfully');
+                        loadLists();
+                        closeGroupModal();
+                    } else {
+                        alert('Error creating group');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error creating group:', error);
+                    alert('Error creating group: ' + error.message);
+                });
+            });
+
+            document.getElementById('addEmailForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+                const email = document.getElementById('emailInput').value;
+                const listId = document.getElementById('listIdInput').value; // Asigură-te că ai acest element în formular
+
+                fetch('/CuPO/WEB/TEST/api/lists', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ listId: listId, email: email })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(text => { throw new Error(text) });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        alert('Email added successfully');
+                    } else {
+                        alert('Error adding email');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error adding email:', error);
+                    alert('Error adding email: ' + error.message);
+                });
+            });
+
             function closeModal() {
                 document.getElementById('createListModal').style.display = 'none';
+            }
+
+            function closeGroupModal() {
+                document.getElementById('createGroupModal').style.display = 'none';
+            }
+
+            function closeEmailModal() {
+                document.getElementById('addEmailModal').style.display = 'none';
             }
 
             function loadLists() {
@@ -101,7 +207,10 @@
                             gridItem.innerHTML = `
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">${list.name}</h5>
+                                        <h5 class="card-title"><a href="#">${list.name}</a></h5>
+                                        <button onclick="seeList(${list.id})">See List</button>
+                                        <button onclick="shop(${list.id})">Shop</button>
+                                        ${list.group === 'yes' ? `<button onclick="openAddEmailModal(${list.id})">Add Person</button>` : ''}
                                     </div>
                                 </div>
                             `;
@@ -113,6 +222,20 @@
                         console.error('Error fetching lists:', error);
                         alert('Error fetching lists: ' + error.message);
                     });
+            }
+
+            function seeList(listId) {
+                // Implement the logic to see the list
+            }
+
+            function shop(listId) {
+                document.cookie = `currentListId=${listId}; path=/`;
+                window.location.href = "shop.php";
+            }
+
+            function openAddEmailModal(listId) {
+                document.getElementById('addEmailModal').style.display = 'block';
+                document.getElementById('listIdInput').value = listId;
             }
 
             // Load lists on page load

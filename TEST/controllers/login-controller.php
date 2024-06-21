@@ -18,6 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($loginResult) {
             $_SESSION['username'] = $username;
             $_SESSION['role'] = $loginResult['role'];
+
+            // Setează un cookie pentru email
+            setcookie('user_email', $username, time() + (86400 * 30), "/"); // 86400 = 1 zi
+
             echo json_encode(['message' => 'Login successful', 'role' => $loginResult['role']]);
         } else {
             http_response_code(401);
@@ -31,5 +35,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     http_response_code(405);
     echo json_encode(['message' => 'Invalid request method']);
 }
-
 ?>
