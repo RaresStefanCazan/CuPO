@@ -24,9 +24,17 @@
 
     <script>
         function loadBasketItems() {
-            fetch('/api/View')
-            .then(response => response.json())
+            const urlParams = new URLSearchParams(window.location.search);
+            const listId = urlParams.get('list_id');
+            console.log(`Fetching items for list ID: ${listId}`);
+
+            fetch(`/CuPO/WEB/TEST/controllers/view_basket.php?list_id=${listId}`)
+            .then(response => {
+                console.log(`Response status: ${response.status}`);
+                return response.json();
+            })
             .then(data => {
+                console.log('Received data:', data); // Debugging: afișăm datele primite
                 const basketItemsContainer = document.getElementById('basket-items');
                 basketItemsContainer.innerHTML = '';
 
