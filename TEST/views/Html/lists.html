@@ -205,6 +205,9 @@
                         const listsGrid = document.getElementById('listsGrid');
                         listsGrid.innerHTML = ''; // Clear the grid
 
+                        const userLists = data.map(list => list.id); // Stocăm ID-urile listelor utilizatorului
+                        localStorage.setItem('userLists', JSON.stringify(userLists)); // Salvăm ID-urile în localStorage
+
                         data.forEach(list => {
                             const gridItem = document.createElement('div');
                             gridItem.classList.add('grid-item');
@@ -230,12 +233,13 @@
             }
 
             window.seeList = function(listId) {
-                window.location.href = `/CuPO/WEB/TEST/views/Html/Basket.php?list_id=${listId}`;
+                document.cookie = `currentListId=${listId}; path=/`;
+                window.location.href = "/home/basket";
             }
 
             window.shop = function(listId) {
                 document.cookie = `currentListId=${listId}; path=/`;
-                window.location.href = "/CuPO/WEB/TEST/views/Html/Shop.php";
+                window.location.href = "/home/shop";
             }
 
             window.openAddEmailModal = function(listId) {

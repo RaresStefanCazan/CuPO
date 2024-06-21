@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 require_once __DIR__ . '/../model/database.php';
 require_once __DIR__ . '/../model/BasketModel.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     $data = json_decode(file_get_contents('php://input'), true);
 
     if (isset($data['food_id']) && isset($data['list_id'])) {
