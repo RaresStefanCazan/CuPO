@@ -40,8 +40,8 @@
             };
             
             console.log('Form data:', data); // Log form data for debugging
-
-            fetch('/api/register-con', {
+    
+            fetch('/home/register-con', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -55,7 +55,7 @@
             .then(data => {
                 console.log('Response data:', data); // Log response data for debugging
                 if (data.message === 'Registration successful') {
-                    window.location.href = '/home/login';
+                    window.location.href = '/home/homeL'; // Redirect to homeL page
                 } else {
                     alert(data.message);
                 }
@@ -63,6 +63,7 @@
             .catch(error => console.error('Error:', error));
         });
     </script>
+    
         
 </body>
 </html>

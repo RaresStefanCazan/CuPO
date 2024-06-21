@@ -5,7 +5,7 @@ html {
     height: 100%;
     font-size: 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(90deg, transparent 0%, transparent 10%, #ca7a81 10%, #ca7a81 11%, transparent 11%, transparent 100%), linear-gradient(180deg, white 12%, transparent 12%), repeating-linear-gradient(180deg, #91C1E1 0px, #91C1E1 1px, transparent 1px, transparent 30px), linear-gradient(white, white);
+    background: linear-gradient(90deg, transparent 0%, transparent 10%, #282828 10%, #282828 11%, transparent 11%, transparent 100%), linear-gradient(180deg, white 12%, transparent 12%), repeating-linear-gradient(180deg, #91C1E1 0px, #91C1E1 1px, transparent 1px, transparent 30px), linear-gradient(white, white);
     color: #282828;
 }
 
@@ -38,6 +38,67 @@ a:hover {
 h1 {
     text-align: center;
     margin-bottom: 20px;
+}
+h2 {
+    color:greenyellow;
+}
+
+.client-status-container {
+    margin-top: 20px;
+    color:greenyellow;
+    text-align: center;
+}
+
+.client-status-container h2 {
+    font-size: 1.2em;
+    
+    color: #282828;
+}
+
+.client-status {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.client-status h2 {
+    font-size: 1.2em;
+    color: #282828;
+    margin-bottom: 10px;
+}
+
+.client-status-box {
+    display: inline-block;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    width: 300px;
+    text-align: center;
+}
+
+.client-status-box p {
+    font-size: 1em;
+    margin: 0;
+}
+
+.client-status-box p#bmi-category {
+    font-size: 1.5em;
+}
+
+.client-status-box p#bmi-category.normal {
+    color: green; /* Change 'normal' BMI text color to green */
+}
+
+.client-status-box p#bmi-category.underweight {
+    color: blue;
+}
+
+.client-status-box p#bmi-category.overweight {
+    color: orange;
+}
+
+.client-status-box p#bmi-category.obese {
+    color: red;
 }
 
 .statistics-options {

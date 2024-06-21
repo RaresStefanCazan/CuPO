@@ -19,6 +19,7 @@ class PagesController {
         'database' => '/../model/database.php',
         'register-con' => '/../controllers/register-controller.php',
         'login-con' => '/../controllers/login-controller.php',
+        'user-con' => '/../controllers/user-controller.php',
         'foods-database' => '/../model/databases/create_and_populate_foods.php',
         'logout' => '/../controllers/logout.php',
         'foods' => '/../controllers/shop-controller.php',

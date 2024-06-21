@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="stylesheet" href="/CuPO/WEB/TEST/views/Style-CSS/styles-user1.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -22,12 +21,6 @@
         <section class="profile-section">
             <h2>User Profile</h2>
 
-            <form id="photo-form">
-                <label for="photo">Upload Photo:</label>
-                <input type="file" id="photo" name="photo">
-            </form>
-            <button type="button" class="btn btn-outline-success">Upload</button>
-
             <form id="personal-info-form">
                 <label for="firstName">First Name:</label>
                 <input type="text" id="firstName" name="firstName" required>
@@ -37,9 +30,6 @@
 
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
-
-                <label for="birthdate">Date of Birth:</label>
-                <input type="date" id="birthdate" name="birthdate" required>
 
                 <label for="weight">Weight (kg):</label>
                 <input type="number" id="weight" name="weight" required>
@@ -59,45 +49,8 @@
                 <label for="address">Address:</label>
                 <textarea id="address" name="address" rows="3"></textarea>
 
-                <label for="education">Highest Education:</label>
-                <input type="text" id="education" name="education">
-
-                <label for="occupation">Occupation:</label>
-                <input type="text" id="occupation" name="occupation">
-
-                <label for="interests">Interests:</label>
-                <textarea id="interests" name="interests" rows="4"></textarea>
-
-                <label for="skills">Skills:</label>
-                <textarea id="skills" name="skills" rows="4"></textarea>
-
-                <label for="category">Category:</label>
-                <input type="text" id="category" name="category">
-
                 <label for="price">Budget per week:</label>
                 <input type="number" id="price" name="price">
-
-                <label for="ingredients">Favorite ingredients:</label>
-                <textarea id="ingredients" name="ingredients" rows="4"></textarea>
-
-                <label for="allergens">Allergens:</label>
-                <textarea id="allergens" name="allergens" rows="4"></textarea>
-
-                <h5>Dietary Restrictions:</h5>
-                <div>
-                    <label class="checkbox-label" for="vegetarian">Vegetarian
-                        <input type="radio" id="vegetarian" name="diet" value="vegetarian">
-                    </label>
-                    <label class="checkbox-label" for="vegan">Vegan
-                        <input type="radio" id="vegan" name="diet" value="vegan">
-                    </label>
-                    <label class="checkbox-label" for="none">None
-                        <input type="radio" id="none" name="diet" value="none" checked>
-                    </label>
-                </div>
-
-                <label for="restaurants">Specific Restaurants:</label>
-                <input type="text" id="restaurants" name="restaurants">
 
                 <button type="submit" class="btn btn-primary btn-lg" onclick="scrollToTop()">Save</button>
             </form>
