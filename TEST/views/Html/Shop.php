@@ -18,7 +18,7 @@
                     <img src="/CuPO/WEB/TEST/views/photo/result.png" alt="Basket" class="basket-icon"> My Basket
                 </a>
             </div>
-        </div>
+</div>
         <div class="search-results" id="searchResults"></div>
     </header>
     <main class="container mt-5">
