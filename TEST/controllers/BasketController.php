@@ -1,29 +1,38 @@
 <?php
-require_once __DIR__ . '/../model/database.php';
+require_once __DIR__ . '/../model/Database.php';
+require_once __DIR__ . '/../model/BasketModel.php';
 
-class BasketController {
-    private $conn;
+header('Content-Type: application/json');
 
-    public function __construct($conn) {
-        $this->conn = $conn;
-    }
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = json_decode(file_get_contents('php://input'), true);
 
-    public function getBasketItems($item_ids) {
-        if (empty($item_ids)) {
-            return [];
-        }
+    if (isset($data['food_id'])) {
+        $food_id = $data['food_id'];
+        $listId = $_COOKIE['currentListId'] ?? null;
 
-        $ids = implode(',', array_map('intval', $item_ids));
-        $sql = "SELECT * FROM foods WHERE id IN ($ids)";
-        $result = $this->conn->query($sql);
+        if ($listId) {
+           
+            $basketModel = new BasketModel($conn);
 
-        $items = [];
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $items[] = $row;
+            $result = $basketModel->addToBasket($listId, $food_id);
+
+            if ($result) {
+                echo json_encode(['success' => true, 'message' => 'Item added to basket']);
+            } else {
+                http_response_code(500);
+                echo json_encode(['success' => false, 'message' => 'Error adding item to basket']);
             }
+        } else {
+            http_response_code(400);
+            echo json_encode(['success' => false, 'message' => 'List ID not found']);
         }
-        return $items;
+    } else {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'message' => 'Food ID is required']);
     }
+} else {
+    http_response_code(405);
+    echo json_encode(['success' => false, 'message' => 'Invalid request method']);
 }
 ?>

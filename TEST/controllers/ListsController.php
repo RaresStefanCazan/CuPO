@@ -22,6 +22,9 @@ class ListsController {
             echo json_encode(['success' => false, 'message' => 'Method not allowed']);
         }
     }
+
+
+    
     public function getLists() {
         $email = $_COOKIE['user_email'] ?? null;
         if (!$email) {
@@ -68,7 +71,7 @@ class ListsController {
     public function addEmailToList() {
         $data = json_decode(file_get_contents('php://input'), true);
     
-        // Log received data
+        // Debugging: afișăm valorile care sunt primite
         error_log('Received data: ' . print_r($data, true));
     
         if (!isset($data['listId']) || !isset($data['email'])) {
@@ -86,6 +89,8 @@ class ListsController {
             echo json_encode(['success' => false]);
         }
     }
+    
+    
     
 }
 ?>
