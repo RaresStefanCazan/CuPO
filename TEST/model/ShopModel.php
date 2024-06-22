@@ -68,5 +68,23 @@ class ShopModel {
         }
         return $foods;
     }
+
+    public function deleteFood($id) {
+        $stmt = $this->conn->prepare("DELETE FROM foods WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
+
+    public function updateFood($id, $aliment, $category, $price, $restrictions, $perishability, $validity, $availability_season, $availability_region, $specific_restaurants, $weight, $protein, $fiber, $calories) {
+        $stmt = $this->conn->prepare("UPDATE foods SET aliment = ?, category = ?, price = ?, restrictions = ?, perishability = ?, validity = ?, availability_season = ?, availability_region = ?, specific_restaurants = ?, weight = ?, protein = ?, fiber = ?, calories = ? WHERE id = ?");
+        $stmt->bind_param("ssdsdsssssdssi", $aliment, $category, $price, $restrictions, $perishability, $validity, $availability_season, $availability_region, $specific_restaurants, $weight, $protein, $fiber, $calories, $id);
+        
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
 ?>

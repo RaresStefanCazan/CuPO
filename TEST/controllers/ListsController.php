@@ -4,7 +4,7 @@ require_once __DIR__ . '/../model/database.php';
 
 session_start();
 
-// Funcție pentru a verifica sesiunea și cookie-ul user_email
+// Verific
 function verifySession() {
     if (!isset($_SESSION['username']) || !isset($_COOKIE['user_email'])) {
         return false;

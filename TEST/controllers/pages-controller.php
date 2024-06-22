@@ -62,10 +62,10 @@ try {
         require_once __DIR__ . '/../controllers/AdminController.php';
         $adminController = new AdminController();
         $adminController->showAdminPage();
-    } elseif ($page === '/../controllers/UserAdminController.php') {
-        require_once __DIR__ . '/../controllers/UserAdminController.php';
-        $usersAdminController = new UsersAdminController($conn);
-        $usersAdminController->getUsers();
+    } elseif ($page === '/../views/Html/FoodsAdmin.php') {
+        require_once __DIR__ . '/../controllers/AdminController.php';
+        $adminController = new AdminController();
+        $adminController->showFoodsAdminPage();
     } elseif ($page === '/../controllers/ListsController.php') {
         require_once __DIR__ . '/../controllers/ListsController.php';
         $listsController = new ListsController($conn);
