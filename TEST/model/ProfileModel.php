@@ -28,8 +28,8 @@ class ProfileModel {
 
     public function updateUserProfile($username, $profileData) {
         try {
-            $stmt = $this->conn->prepare("UPDATE users SET first_name = ?, last_name = ?, email = ?, weight_kg = ?, height_cm = ?, gender = ?, phone = ?, address = ?, budget_per_week = ? WHERE user = ?");
-            $stmt->bind_param("ssssssssds", $profileData['first_name'], $profileData['last_name'], $profileData['email'], $profileData['weight_kg'], $profileData['height_cm'], $profileData['gender'], $profileData['phone'], $profileData['address'], $profileData['budget_per_week'], $username);
+            $stmt = $this->conn->prepare("UPDATE users SET first_name = ?, last_name = ?, weight_kg = ?, height_cm = ?, gender = ?, user = ?, phone = ?, address = ?, budget_per_week = ? WHERE user = ?");
+            $stmt->bind_param("ssddssssds", $profileData['first_name'], $profileData['last_name'], $profileData['weight_kg'], $profileData['height_cm'], $profileData['gender'], $profileData['email'], $profileData['phone'], $profileData['address'], $profileData['budget_per_week'], $username);
             return $stmt->execute();
         } catch (Exception $e) {
             error_log("Error: " . $e->getMessage());
@@ -37,4 +37,3 @@ class ProfileModel {
         }
     }
 }
-?>

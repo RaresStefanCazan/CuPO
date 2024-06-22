@@ -31,6 +31,8 @@ class ProfileController {
     public function getProfile($username) {
         header('Content-Type: application/json');
 
+        error_log("Fetching profile for user: $username"); // Log the username
+
         $profile = $this->profileModel->getUserProfile($username);
 
         if ($profile) {
@@ -44,29 +46,42 @@ class ProfileController {
     public function updateProfile($data) {
         header('Content-Type: application/json');
 
-        if (isset($data['first_name'], $data['last_name'], $data['email'], $data['weight_kg'], $data['height_cm'], $data['gender'], $data['phone'], $data['address'], $data['budget_per_week'])) {
-            $username = urldecode($_SESSION['username']);
-            $profileData = [
-                'first_name' => $data['first_name'],
-                'last_name' => $data['last_name'],
-                'email' => $data['email'],
-                'weight_kg' => $data['weight_kg'],
-                'height_cm' => $data['height_cm'],
-                'gender' => $data['gender'],
-                'phone' => $data['phone'],
-                'address' => $data['address'],
-                'budget_per_week' => $data['budget_per_week']
-            ];
+        // Log the received data
+        error_log("Received data for update: " . json_encode($data));
 
-            if ($this->profileModel->updateUserProfile($username, $profileData)) {
-                echo json_encode(['status' => 'success', 'message' => 'Profile updated successfully']);
-            } else {
-                http_response_code(500);
-                echo json_encode(['status' => 'error', 'message' => 'Failed to update profile']);
-            }
-        } else {
+        if (!isset($data['first_name']) || !isset($data['last_name']) || !isset($data['weight_kg']) || !isset($data['height_cm']) || !isset($data['gender']) || !isset($data['email']) || !isset($data['phone']) || !isset($data['address']) || !isset($data['budget_per_week'])) {
             http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => 'Invalid input']);
+            echo json_encode(['status' => 'error', 'message' => 'Invalid input: missing required fields']);
+            return;
+        }
+
+        $username = urldecode($_SESSION['username']);
+        $profileData = [
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'weight_kg' => $data['weight_kg'],
+            'height_cm' => $data['height_cm'],
+            'gender' => $data['gender'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'address' => $data['address'],
+            'budget_per_week' => $data['budget_per_week']
+        ];
+
+        // Log the data to be updated
+        error_log("Updating profile for user: $username with data: " . json_encode($profileData));
+
+        // Attempt to update the profile in the database
+        $updateResult = $this->profileModel->updateUserProfile($username, $profileData);
+        
+        // Log the result of the update attempt
+        error_log("Update result: " . ($updateResult ? "Success" : "Failure"));
+
+        if ($updateResult) {
+            echo json_encode(['status' => 'success', 'message' => 'Profile updated successfully']);
+        } else {
+            http_response_code(500);
+            echo json_encode(['status' => 'error', 'message' => 'Failed to update profile']);
         }
     }
 }
@@ -84,9 +99,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $data = json_decode(file_get_contents('php://input'), true);
+    // Log the received raw data for debugging
+    error_log("Raw data received: " . file_get_contents('php://input'));
     $profileController->updateProfile($data);
 } else {
     http_response_code(405);
     echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
 }
-?>
