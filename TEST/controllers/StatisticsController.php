@@ -1,28 +1,24 @@
 <?php
-require_once __DIR__ . '/../model/database.php';
+// StatisticsController.php
+
 require_once __DIR__ . '/../model/StatisticsModel.php';
+require_once __DIR__ . '/../model/database.php';
 
-header('Content-Type: application/json');
+session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $type = $_POST['type'];
-    
-
-    $controller = new StatisticsController($conn);
-    $data = [];
-
-    if ($type === 'expensive') {
-        $data = $controller->getExpensiveProducts();
-    } elseif ($type === 'favourites') {
-        $data = $controller->getFavouriteProducts();
-    } elseif ($type === 'vegan') {
-        $data = $controller->getVeganProducts();
-    } elseif ($type === 'lactosefree') {
-        $data = $controller->getLactoseFreeProducts();
+// Verify Session
+function verifySession() {
+    if (!isset($_SESSION['username']) || !isset($_COOKIE['user_email'])) {
+        return false;
     }
+    return urldecode($_SESSION['username']) === urldecode($_COOKIE['user_email']);
+}
 
-    echo json_encode($data);
-    exit();
+// Authentication check
+if (!verifySession()) {
+    http_response_code(401);
+    echo json_encode(['message' => 'Unauthorized']);
+    exit;
 }
 
 class StatisticsController {
@@ -32,20 +28,48 @@ class StatisticsController {
         $this->statisticsModel = new StatisticsModel($conn);
     }
 
-    public function getExpensiveProducts() {
-        return $this->statisticsModel->getExpensiveProducts();
-    }
+    public function getUserStatistics() {
+        header('Content-Type: application/json');
 
-    public function getFavouriteProducts() {
-        return $this->statisticsModel->getFavouriteProducts();
-    }
+        $username = urldecode($_SESSION['username']);
+        
+        // Get user data from the model
+        $userData = $this->statisticsModel->getUserData($username);
 
-    public function getVeganProducts() {
-        return $this->statisticsModel->getVeganProducts();
-    }
+        if ($userData) {
+            $height_cm = $userData['height_cm'];
+            $weight_kg = $userData['weight_kg'];
 
-    public function getLactoseFreeProducts() {
-        return $this->statisticsModel->getLactoseFreeProducts();
+            // Calculate BMI
+            $bmi = $this->statisticsModel->calculateBMI($height_cm, $weight_kg);
+
+            // Interpret BMI category
+            $bmiCategory = $this->statisticsModel->interpretBMI($bmi);
+
+            echo json_encode([
+                'status' => 'success',
+                'data' => [
+                    'height_cm' => $height_cm,
+                    'weight_kg' => $weight_kg,
+                    'bmi' => $bmi,
+                    'bmi_category' => $bmiCategory
+                ]
+            ]);
+        } else {
+            http_response_code(404);
+            echo json_encode(['status' => 'error', 'message' => 'No statistics found for the user.']);
+        }
     }
+}
+
+// Initialize the controller
+$statisticsController = new StatisticsController($conn);
+
+// Check request method and route accordingly
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $statisticsController->getUserStatistics();
+} else {
+    http_response_code(405);
+    echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
 }
 ?>

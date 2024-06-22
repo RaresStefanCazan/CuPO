@@ -1,0 +1,169 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(180deg, white 12%, transparent 12%), repeating-linear-gradient(180deg, #91C1E1 0px, #91C1E1 1px, transparent 1px, transparent 30px), linear-gradient(white, white);
+    color: #282828;
+}
+
+.header {
+    text-align: center;
+    color: #282828;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: top 0.5s;
+    top: 0;
+    background-color: #ffffff;
+}
+
+a {
+    color: #282828;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.container {
+    padding: 20px;
+    margin-top: 80px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.client-status-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.client-status-container h2 {
+    font-size: 1.2em;
+    color: #282828;
+}
+
+.client-status {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.client-status h2 {
+    font-size: 1.2em;
+    color: #282828;
+    margin-bottom: 10px;
+}
+
+.client-status-box {
+    display: inline-block;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    width: 300px;
+    text-align: center;
+}
+
+.client-status-box p {
+    font-size: 1em;
+    margin: 0;
+}
+
+.client-status-box p#bmi-category {
+    font-size: 1.5em;
+}
+
+.client-status-box p#bmi-category.normal {
+    color: green; /* Change 'normal' BMI text color to green */
+}
+
+.client-status-box p#bmi-category.underweight {
+    color: blue;
+}
+
+.client-status-box p#bmi-category.overweight {
+    color: orange;
+}
+
+.client-status-box p#bmi-category.obese {
+    color: red;
+}
+
+.recommended-foods {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.recommended-foods h2 {
+    font-size: 1.2em;
+    color: #282828;
+    margin-bottom: 10px;
+}
+
+#foods-list-container {
+    display: inline-block;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    width: 300px;
+    text-align: left;
+}
+
+#foods-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#foods-list li {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+#foods-list li:last-child {
+    margin-bottom: 0;
+}
+
+.specific-foods {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.specific-food {
+    flex-basis: calc(25% - 20px);
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 600px) {
+    .specific-food {
+        flex-basis: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        font-size: 0.6em;
+    }
+}

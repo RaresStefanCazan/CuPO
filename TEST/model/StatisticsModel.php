@@ -1,4 +1,6 @@
 <?php
+// StatisticsModel.php
+
 class StatisticsModel {
     private $conn;
 
@@ -6,50 +8,49 @@ class StatisticsModel {
         $this->conn = $conn;
     }
 
-    public function getExpensiveProducts() {
-        $sql = "SELECT aliment, price FROM foods ORDER BY price DESC";
-        $result = $this->conn->query($sql);
+    public function getUserData($username) {
+        try {
+            $stmt = $this->conn->prepare("SELECT height_cm, weight_kg FROM users WHERE user = ?");
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-        $data = [];
-        while ($row = $result->fetch_assoc()) {
-            $data[] = $row;
+            if ($result->num_rows > 0) {
+                return $result->fetch_assoc();
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
+            error_log("Error: " . $e->getMessage());
+            return null;
         }
-        return $data;
     }
 
-    public function getFavouriteProducts() {
-        $sql = "SELECT aliment, price FROM foods WHERE favourite = 1";
-        $result = $this->conn->query($sql);
-
-        $data = [];
-        while ($row = $result->fetch_assoc()) {
-            $data[] = $row;
+    public function calculateBMI($height_cm, $weight_kg) {
+        // Ensure height is in meters
+        $height_m = $height_cm / 100;
+        
+        // Calculate BMI
+        if ($height_m > 0) {
+            $bmi = $weight_kg / ($height_m * $height_m);
+            return $bmi;
+        } else {
+            return null;
         }
-        return $data;
     }
 
-    public function getVeganProducts() {
-        $sql = "SELECT aliment, price FROM foods WHERE vegan = 1";
-        $result = $this->conn->query($sql);
-
-        $data = [];
-        while ($row = $result->fetch_assoc()) {
-            $data[] = $row;
+    public function interpretBMI($bmi) {
+        if ($bmi === null) {
+            return 'Unknown';
+        } else if ($bmi < 18.5) {
+            return 'Underweight';
+        } else if ($bmi < 25) {
+            return 'Normal weight';
+        } else if ($bmi < 30) {
+            return 'Overweight';
+        } else {
+            return 'Obese';
         }
-        return $data;
     }
-
-    public function getLactoseFreeProducts() {
-        $sql = "SELECT aliment, price FROM foods WHERE lactose_free = 1";
-        $result = $this->conn->query($sql);
-
-        $data = [];
-        while ($row = $result->fetch_assoc()) {
-            $data[] = $row;
-        }
-        return $data;
-    }
-
-    // Adaugă alte funcții pentru generarea altor statistici...
 }
 ?>
