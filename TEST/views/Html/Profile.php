@@ -57,7 +57,7 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-    fetch('/CuPO/WEB/TEST/controllers/ProfileController.php', {
+    fetch('/home/Profile', {
         method: 'GET',
         credentials: 'include'
     })
@@ -104,7 +104,7 @@ document.getElementById('personal-info-form').addEventListener('submit', functio
         budget_per_week: formData.get('budget_per_week')
     };
 
-    fetch('/CuPO/WEB/TEST/controllers/ProfileController.php', {
+    fetch('/home/Profile', {
         method: 'PUT',
         body: JSON.stringify(jsonData),
         headers: {

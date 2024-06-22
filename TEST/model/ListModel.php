@@ -55,7 +55,12 @@ class ListsModel {
         return $this->conn->insert_id;
     }
 
-    
+    public function deleteList($listId) {
+        $stmt = $this->conn->prepare("DELETE FROM lists WHERE id = ?");
+        $stmt->bind_param("i", $listId);
+        return $stmt->execute();
+    }
+
     public function getListById($listId) {
         $stmt = $this->conn->prepare("SELECT * FROM lists WHERE id = ?");
         $stmt->bind_param("i", $listId);
@@ -63,9 +68,5 @@ class ListsModel {
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
-        
-    
-    
 }
-
 ?>

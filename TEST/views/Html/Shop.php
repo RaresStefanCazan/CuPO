@@ -74,7 +74,7 @@
         });
 
         function fetchFoods() {
-            fetch('/CuPO/WEB/TEST/controllers/shop-controller.php')
+            fetch('/home/foods')
                 .then(response => response.json())
                 .then(data => {
                     renderFoods(data); // Initial render of foods
@@ -112,7 +112,7 @@
         }
 
         function sortLowToHigh() {
-            fetch('/CuPO/WEB/TEST/controllers/shop-controller.php?sort=low_to_high')
+            fetch('/home/foods?sort=low_to_high')
                 .then(response => response.json())
                 .then(data => {
                     renderFoods(data); // Render sorted foods
@@ -232,7 +232,7 @@
 
     console.log('Sending data:', postData); // Debugging line
 
-    fetch('/CuPO/WEB/TEST/controllers/add_to_basket.php', {
+    fetch('/home/Basket', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

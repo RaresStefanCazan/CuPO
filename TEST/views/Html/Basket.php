@@ -20,7 +20,7 @@
         </div>
     </main>
 
-    <script>
+    <script>        
         function getCookie(name) {
             let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
             if (match) {
@@ -39,7 +39,7 @@
             }
 
             console.log(`Fetching items for list ID: ${listId}`);
-            fetch(`/CuPO/WEB/TEST/controllers/view_basket.php?list_id=${listId}`)
+            fetch(`/CuPO/WEB/TEST/controllers/TestBasket.php?list_id=${listId}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok ' + response.statusText);
@@ -84,7 +84,7 @@
         }
 
         function removeFromCart(foodId, listId) {
-            fetch('/home/Remove', {
+            fetch('/home/Basket', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
@@ -109,6 +109,6 @@
                 alert('List ID is required');
             }
         };
-    </script>
+    </script> 
 </body>
 </html>

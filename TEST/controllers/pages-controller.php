@@ -6,7 +6,7 @@ class PagesController {
         'homeL' => '/../views/Html/HomePageL.html',
         'recipes' => '/../views/Html/Recipes.html',
         'shop' => '/../views/Html/Shop.php',
-        'basket' => '/../views/Html/Basket.php',
+        //'basket' => '/../views/Html/Basket.php',
         'mybasket' => '/../views/Html/Basket.php',
         'metadataManagement' => '/../views/Html/MetadataManagement.html',
         'admin' => '/../views/Html/Admin.php',
@@ -17,15 +17,15 @@ class PagesController {
         'info' => '/../views/Html/Info.html',
         'admin' => '/../controllers/AdminController.php',
         'database' => '/../model/database.php',
-        'register-con' => '/../controllers/register-controller.php',
-        'login-con' => '/../controllers/login-controller.php',
+        'USER' => '/../controllers/register-controller.php',
+        'Session' => '/../controllers/login-controller.php',
         'user-con' => '/../controllers/user-controller.php',
         'foods-database' => '/../model/databases/create_and_populate_foods.php',
         'logout' => '/../controllers/logout.php',
         'foods' => '/../controllers/shop-controller.php',
         'FoodsAdmin' => '/../controllers/FoodsAdminController.php',
         'statistics' => '/../views/Html/Statistics.php',
-        'Basket' => '/../controllers/add_to_basket.php',
+        'addBasket' => '/../controllers/add_to_basket.php',
         'View' => '/../controllers/view_basket.php',
         'Remove' => '/../controllers/remove_from_basket.php',
         'FoodsAdmin' => '/../views/Html/FoodsAdmin.php',
@@ -33,6 +33,8 @@ class PagesController {
         'UsersAdmin' => '/../views/Html/UsersAdmin.php',
         'lists' => '/../controllers/ListsController.php',
         'Lists' => '/../views/Html/lists.html',
+        'Basket' => '/../controllers/TestBasket.php',
+        'Profile' => '/../controllers/ProfileController.php'
     ];
 
     public function handleRequest() {

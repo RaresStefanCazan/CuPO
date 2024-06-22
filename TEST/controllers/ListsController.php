@@ -33,6 +33,8 @@ class ListsController {
             $this->createList();
         } elseif ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $this->addEmailToList();
+        } elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+            $this->deleteList();
         } else {
             http_response_code(405);
             header('Content-Type: application/json');
@@ -40,8 +42,6 @@ class ListsController {
         }
     }
 
-
-    
     public function getLists() {
         $email = $_COOKIE['user_email'] ?? null;
         if (!$email) {
@@ -81,9 +81,6 @@ class ListsController {
             echo json_encode(['success' => false]);
         }
     }
-    
-    
-    
 
     public function addEmailToList() {
         $data = json_decode(file_get_contents('php://input'), true);
@@ -106,8 +103,24 @@ class ListsController {
             echo json_encode(['success' => false]);
         }
     }
-    
-    
-    
+
+    public function deleteList() {
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        if (!isset($data['listId'])) {
+            http_response_code(400);
+            echo json_encode(['success' => false, 'message' => 'Invalid request']);
+            return;
+        }
+
+        $result = $this->listsModel->deleteList($data['listId']);
+
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            http_response_code(500);
+            echo json_encode(['success' => false, 'message' => 'Failed to delete list']);
+        }
+    }
 }
 ?>
