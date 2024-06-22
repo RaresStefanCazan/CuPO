@@ -15,7 +15,7 @@
             </div>
             <div class="header-content2">
                 <h2><a href="/home/FoodsAdmin">Foods</a></h2>
-                <h2><a href="/home/users">Users</a></h2>
+                <h2><a href="/home/UsersAdmin">Users</a></h2>
                 <h2><a href="/home/logout">Logout</a></h2> <!-- Butonul de logout -->
             </div>
         </div>

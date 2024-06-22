@@ -1,31 +1,35 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
 }
 
 .header {
-    background-color: #333;
-    color: white;
+    background-color: #343a40;
     padding: 10px;
+    color: #ffffff;
     text-align: center;
 }
 
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header .nav-container a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0 15px;
 }
 
-.btn-home {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
+.header .nav-container a.active {
+    font-weight: bold;
 }
 
 .container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
 }
 
-.filter-section {
+.filter-section h2 {
+    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -33,21 +37,20 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: center;
 }
 
 .grid-item {
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: calc(33.333% - 20px);
-    box-sizing: border-box;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 10px;
 }
 
 .card {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
 .card-body {
@@ -57,8 +60,15 @@ body {
 .card-title {
     font-size: 18px;
     margin-bottom: 10px;
+    color: #343a40;
 }
 
 .card-text {
-    margin: 5px 0;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.card-text strong {
+    color: #343a40;
 }
