@@ -15,7 +15,7 @@ try {
 
         // Calculate BMI and category if statistics are found
         if ($statistics) {
-            $bmi = $userModel->calculateBMI($statistics['height'], $statistics['weight']);
+            $bmi = $userModel->calculateBMI($statistics['height_cm'], $statistics['weight_kg']);
             $bmiCategory = $userModel->interpretBMI($bmi);
 
             $statistics['bmi_category'] = $bmiCategory; // Add BMI category to the statistics array
@@ -33,3 +33,4 @@ try {
     http_response_code(500);
     echo json_encode(['status' => 'error', 'message' => 'Server error: ' . $e->getMessage()]);
 }
+?>

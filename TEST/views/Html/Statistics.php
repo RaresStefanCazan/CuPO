@@ -33,7 +33,7 @@
                     return 'orange';
                 case 'underweight':
                     return 'blue';
-                case 'normal':
+                case 'normal weight':
                     return 'green';
                 default:
                     return 'black';
@@ -41,7 +41,7 @@
         }
 
         function calculateWeightSuggestion(height, weight, bmiCategory) {
-            const heightInMeters = height;
+            const heightInMeters = height / 100; // Assuming height is in cm
             const minNormalWeight = 18.5 * heightInMeters * heightInMeters;
             const maxNormalWeight = 24.9 * heightInMeters * heightInMeters;
 
@@ -53,7 +53,7 @@
             } else if (bmiCategory.toLowerCase() === 'overweight' || bmiCategory.toLowerCase() === 'obese') {
                 const weightToLose = weight - maxNormalWeight;
                 suggestion = `You need to lose at least ${weightToLose.toFixed(1)} kg to reach a normal weight.`;
-            } else if (bmiCategory.toLowerCase() === 'normal') {
+            } else if (bmiCategory.toLowerCase() === 'normal weight') {
                 suggestion = 'You have a normal weight. Keep maintaining it!';
             }
 
@@ -73,7 +73,7 @@
                         const stats = data.data;
                         const bmiCategory = stats.bmi_category;
                         const color = getColorForBmiCategory(bmiCategory);
-                        const suggestion = calculateWeightSuggestion(stats.height, stats.weight, bmiCategory);
+                        const suggestion = calculateWeightSuggestion(stats.height_cm, stats.weight_kg, bmiCategory);
 
                         document.getElementById('bmi-category').innerHTML = `
                             <span style="color: ${color};">${bmiCategory}</span>

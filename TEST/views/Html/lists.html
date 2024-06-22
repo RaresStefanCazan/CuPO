@@ -94,7 +94,7 @@
                 event.preventDefault();
                 const listName = document.getElementById('listName').value;
 
-                fetch('/CuPO/WEB/TEST/api/lists', {
+                fetch('/CuPO/WEB/TEST/home/lists', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -126,7 +126,7 @@
                 event.preventDefault();
                 const groupName = document.getElementById('groupName').value;
 
-                fetch('/CuPO/WEB/TEST/api/lists', {
+                fetch('/CuPO/WEB/TEST/home/lists', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -163,7 +163,7 @@
                 // Debugging: afișăm valorile care sunt trimise
                 console.log('Sending data:', { listId: listId, email: email });
 
-                fetch('/CuPO/WEB/TEST/api/lists', {
+                fetch('/CuPO/WEB/TEST/home/lists', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
@@ -194,7 +194,7 @@
             }
 
             function loadLists() {
-                fetch('/CuPO/WEB/TEST/api/lists')
+                fetch('/CuPO/WEB/TEST/home/lists')
                     .then(response => {
                         if (!response.ok) {
                             return response.text().then(text => { throw new Error(text) });

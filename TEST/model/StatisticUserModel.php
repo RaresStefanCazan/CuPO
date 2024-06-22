@@ -8,7 +8,7 @@ class StatisticUserModel {
 
     public function getUserStatistics($username) {
         try {
-            $stmt = $this->conn->prepare("SELECT height, weight FROM users WHERE user = ?");
+            $stmt = $this->conn->prepare("SELECT height_cm, weight_kg FROM users WHERE user = ?");
             $stmt->bind_param("s", $username);
             $stmt->execute();
             $stmt->store_result();
@@ -16,7 +16,7 @@ class StatisticUserModel {
 
             if ($stmt->num_rows > 0) {
                 $stmt->fetch();
-                return ['height' => $height, 'weight' => $weight];
+                return ['height_cm' => $height, 'weight_kg' => $weight];
             } else {
                 return null;
             }
@@ -28,8 +28,8 @@ class StatisticUserModel {
 
     public function calculateBMI($height, $weight) {
         // Convert height to meters from cm
-        $heightInMeters = $height;
-        
+        $heightInMeters = $height / 100; // Assuming height is in cm
+
         // Calculate BMI
         if ($heightInMeters > 0) {
             $bmi = $weight / ($heightInMeters * $heightInMeters);

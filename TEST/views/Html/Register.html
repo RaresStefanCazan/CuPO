@@ -9,7 +9,7 @@
 <body>
     
     <header>
-        <h1><a href="../Html/HomePage.html">Home</a></h1>
+        <h1><a href="/home/home">Home</a></h1>
     </header>
     
 
@@ -55,7 +55,7 @@
             .then(data => {
                 console.log('Response data:', data); // Log response data for debugging
                 if (data.message === 'Registration successful') {
-                    window.location.href = '/home/homeL'; // Redirect to homeL page
+                    window.location.href = '/home/login'; // Redirect to homeL page
                 } else {
                     alert(data.message);
                 }

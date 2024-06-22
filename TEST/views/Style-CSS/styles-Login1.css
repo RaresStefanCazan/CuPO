@@ -54,6 +54,7 @@ label {
 }
 
 input[type="text"],
+input[type="email"],
 input[type="password"],
 button {
     width: 100%;
@@ -63,6 +64,7 @@ button {
     border-radius: 3px;
     box-sizing: border-box;
 }
+
 
 button {
     background-color: #007bff;
