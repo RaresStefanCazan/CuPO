@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $userModel = new UserModel($conn);
         $loginResult = $userModel->login($username, $password);
-
+        
         if ($loginResult) {
             $_SESSION['username'] = $username;
             $_SESSION['role'] = $loginResult['role'];

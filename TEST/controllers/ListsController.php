@@ -2,6 +2,23 @@
 require_once __DIR__ . '/../model/ListModel.php';
 require_once __DIR__ . '/../model/database.php';
 
+session_start();
+
+// Funcție pentru a verifica sesiunea și cookie-ul user_email
+function verifySession() {
+    if (!isset($_SESSION['username']) || !isset($_COOKIE['user_email'])) {
+        return false;
+    }
+    return $_SESSION['username'] === $_COOKIE['user_email'];
+}
+
+// În fiecare script de pagină care necesită autentificare
+if (!verifySession()) {
+    http_response_code(401);
+    echo json_encode(['message' => 'Unauthorized']);
+    exit;
+}
+
 class ListsController {
     private $listsModel;
 

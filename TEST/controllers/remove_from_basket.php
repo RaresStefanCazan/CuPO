@@ -1,5 +1,21 @@
 <?php
 session_start();
+
+// Verific
+function verifySession() {
+    if (!isset($_SESSION['username']) || !isset($_COOKIE['user_email'])) {
+        return false;
+    }
+    return $_SESSION['username'] === $_COOKIE['user_email'];
+}
+
+// În fiecare script de pagină care necesită autentificare
+if (!verifySession()) {
+    http_response_code(401);
+    echo json_encode(['message' => 'Unauthorized']);
+    exit;
+}
+
 header('Content-Type: application/json');
 
 require_once __DIR__ . '/../model/database.php';
