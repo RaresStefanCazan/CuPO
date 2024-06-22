@@ -19,10 +19,7 @@
         <section class="profile-section">
             <h2>User Profile</h2>
 
-            <form id="personal-info-form" action="ProfileController.php" method="post">
-                <!-- Hidden action field to specify the action -->
-                <input type="hidden" name="action" value="update_profile">
-
+            <form id="personal-info-form">
                 <label for="first_name">First Name:</label>
                 <input type="text" id="first_name" name="first_name" required>
 
@@ -60,7 +57,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('/CuPO/WEB/TEST/controllers/ProfileController.php?action=get_profile', {
+            fetch('/CuPO/WEB/TEST/controllers/ProfileController.php', {
                 method: 'GET',
                 credentials: 'include'
             })
@@ -95,16 +92,25 @@
 
             const formData = new FormData(this);
 
+            const jsonData = {};
+            formData.forEach((value, key) => {
+                jsonData[key] = value;
+            });
+
             fetch('/CuPO/WEB/TEST/controllers/ProfileController.php', {
-                method: 'POST',
-                body: formData,
+                method: 'PUT',
+                body: JSON.stringify(jsonData),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include'
             })
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    alert('Profile updated successfully!');
+                    alert('Profile updated successfully');
                 } else {
+                    console.error('Error message from server:', data.message);
                     alert('Failed to update profile: ' + data.message);
                 }
             })

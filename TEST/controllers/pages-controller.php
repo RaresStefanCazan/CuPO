@@ -13,7 +13,7 @@ class PagesController {
         'login' => '/../views/Html/Login.html',
         'register' => '/../views/Html/Register.html',
         'forgot' => '/../views/Html/ForgotPassword.html',
-        'userInfo' => '/../views/Html/UserInfo.html',
+        'userInfo' => '/../views/Html/Profile.php',
         'info' => '/../views/Html/Info.html',
         'admin' => '/../controllers/AdminController.php',
         'database' => '/../model/database.php',
