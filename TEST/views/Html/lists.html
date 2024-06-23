@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Lists</title>
     <link rel="stylesheet" href="/CuPO/WEB/TEST/views/Style-CSS/styles-lists.css">
+   
 </head>
 <body>
     <header class="header" id="header">
         <div class="nav-container">
             <a class="btn-home active" href="/home/homeL">Home</a>
-            <a class="btn-logout" href="/CuPO/WEB/TEST/controllers/logout.php">Logout</a>
+            <a class="btn-home active" href="/home/logout">Logout</a>
         </div>
     </header>
     <main class="container mt-5">
@@ -25,30 +26,15 @@
         </div>
     </main>
 
-    <!-- Create List Modal -->
+    <!-- Create List/Group Modal -->
     <div id="createListModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('createListModal')">&times;</span>
-            <h2>Create New List</h2>
+            <h2 id="modalTitle">Create New List</h2>
             <form id="createListForm">
                 <div class="form-group">
-                    <label for="listName">List Name:</label>
+                    <label for="listName">Name:</label>
                     <input type="text" id="listName" name="listName" required>
-                </div>
-                <button type="submit">Create</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Create Group Modal -->
-    <div id="createGroupModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('createGroupModal')">&times;</span>
-            <h2>Create New Group</h2>
-            <form id="createGroupForm">
-                <div class="form-group">
-                    <label for="groupName">Group Name:</label>
-                    <input type="text" id="groupName" name="groupName" required>
                 </div>
                 <button type="submit">Create</button>
             </form>
@@ -72,6 +58,10 @@
     </div>
 
     <script>
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
         function getCookie(name) {
             let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
             if (match) {
@@ -82,24 +72,31 @@
         }
 
         document.addEventListener('DOMContentLoaded', function () {
+            let isGroup = false;
+
             document.getElementById('createListBtn').addEventListener('click', function () {
+                isGroup = false;
+                document.getElementById('modalTitle').textContent = 'Create New List';
                 document.getElementById('createListModal').style.display = 'block';
             });
 
             document.getElementById('createGroupBtn').addEventListener('click', function () {
-                document.getElementById('createGroupModal').style.display = 'block';
+                isGroup = true;
+                document.getElementById('modalTitle').textContent = 'Create New Group';
+                document.getElementById('createListModal').style.display = 'block';
             });
 
             document.getElementById('createListForm').addEventListener('submit', function (event) {
                 event.preventDefault();
                 const listName = document.getElementById('listName').value;
+                const group = isGroup ? 'yes' : 'no';
 
                 fetch('/home/lists', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ name: listName, group: 'no' })
+                    body: JSON.stringify({ name: listName, group: group })
                 })
                 .then(response => {
                     if (!response.ok) {
@@ -109,49 +106,16 @@
                 })
                 .then(data => {
                     if (data.success) {
-                        alert('List created successfully');
+                        alert(`${isGroup ? 'Group' : 'List'} created successfully`);
                         loadLists();
                         closeModal('createListModal');
                     } else {
-                        alert('Error creating list');
+                        alert(`Error creating ${isGroup ? 'group' : 'list'}`);
                     }
                 })
                 .catch(error => {
-                    console.error('Error creating list:', error);
-                    alert('Error creating list: ' + error.message);
-                });
-            });
-
-            document.getElementById('createGroupForm').addEventListener('submit', function (event) {
-                event.preventDefault();
-                const groupName = document.getElementById('groupName').value;
-
-                fetch('/home/lists', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ name: groupName, group: 'yes' })
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        return response.text().then(text => { throw new Error(text) });
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.success) {
-                        alert('Group created successfully');
-                        document.cookie = `currentListId=${data.listId}; path=/`; // Setează cookie-ul cu ID-ul listei
-                        loadLists();
-                        closeModal('createGroupModal');
-                    } else {
-                        alert('Error creating group');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error creating group:', error);
-                    alert('Error creating group: ' + error.message);
+                    console.error(`Error creating ${isGroup ? 'group' : 'list'}:`, error);
+                    alert(`Error creating ${isGroup ? 'group' : 'list'}: ` + error.message);
                 });
             });
 
@@ -188,10 +152,6 @@
                     alert('Error adding email: ' + error.message);
                 });
             });
-
-            function closeModal(modalId) {
-                document.getElementById(modalId).style.display = 'none';
-            }
 
             function loadLists() {
                 fetch('/home/lists')
@@ -244,8 +204,9 @@
             }
 
             window.openAddEmailModal = function(listId) {
-                document.getElementById('addEmailModal').style.display = 'block';
+                document.cookie = `currentListId=${listId}; path=/`;
                 document.getElementById('listIdInput').value = listId;
+                document.getElementById('addEmailModal').style.display = 'block';
             }
 
             window.removeList = function(listId) {

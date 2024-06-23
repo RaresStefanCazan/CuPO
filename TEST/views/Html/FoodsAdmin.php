@@ -9,7 +9,7 @@
 <body>
     <header class="header" id="header">
         <div class="nav-container">
-            <a class="btn-home active" href="/home/homeL">Home</a>
+            <a class="btn-home active" href="/home/AdminView">Home</a>
 
     </div>
 </header>

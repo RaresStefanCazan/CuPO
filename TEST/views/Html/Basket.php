@@ -11,6 +11,7 @@
         <div class="topnav">
             <a href="/home/homeL">Home</a>
             <a class="active" href="/home/shop">Shop</a>
+            <a href="/home/Lists">Lists</a>
         </div>
     </header>
     <main class="container mt-5">
