@@ -1,7 +1,7 @@
 RewriteEngine On
 
 # Redirecționarea pentru paginile obișnuite
-RewriteRule ^home/([^/]*)$ /CuPO/WEB/TEST/index.php?page=$1 [L]
 
+RewriteRule ^home/([^/]*)$ /CuPO/WEB/TEST/index.php?page=$1 [L]
 
 RewriteRule ^api/([^/]*)$ /CuPO/WEB/TEST/index.php?page=$1 [L]

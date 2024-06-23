@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <link rel="stylesheet" href="/CuPO/WEB/TEST/views/Style-CSS/styles-user2.css">
+    <link rel="stylesheet" href="/CuPO/WEB/TEST/views/Style-CSS/styles-user.css">
 </head>
 <body>
     <header class="header" id="header">
@@ -127,7 +127,18 @@ document.getElementById('personal-info-form').addEventListener('submit', functio
     });
 });
 
-
+let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+            console.log(`Scroll position: ${st}`);
+            if (st > lastScrollTop) {
+                header.style.top = '-100px';
+            } else {
+                header.style.top = '0';
+            }
+            lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+        }, false);
     </script>
 </body>
 </html>

@@ -4,8 +4,7 @@ body, html {
     height: 100%;
     font-size: 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #ffffff;
-    color: #282828;
+    background-image: repeating-linear-gradient(0deg, rgb(177,208,243) 0px, rgb(177,208,243) 2px, transparent 2px, transparent 40px), repeating-linear-gradient(90deg, rgb(177,208,243) 0px, rgb(177,208,243) 2px, transparent 2px, transparent 40px), linear-gradient(white, white);    color: #282828;
 }
 
 .header {

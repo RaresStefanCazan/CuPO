@@ -1,0 +1,124 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(90deg, transparent 0%, transparent 10%, #EA858A 10%, #EA858A calc(10% + 3px), transparent calc(10% + 3px), transparent 100%), linear-gradient(180deg, white 10%, transparent 10%), repeating-linear-gradient(180deg, #91C1E1 0px, #91C1E1 2px, transparent 2px, transparent 38px), linear-gradient(white,white);
+}
+
+
+.header {
+    background-color: #f8f9fa;
+    color: #282828;
+    position: sticky;
+    top: 0;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: top 0.5s;
+}
+
+.header .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.nav-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #282828;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.nav-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-decoration: none;
+    color: #282828;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-left: 10px; /* Adjust margin as needed */
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2,
+h3 {
+    color: #343a40;
+}
+
+.client-status {
+    margin-bottom: 20px;
+}
+
+.client-status-box p,
+.client-status-box h2 {
+    margin: 0;
+}
+
+#bmi-category {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.recommended-foods,
+.specific-foods {
+    margin-bottom: 20px;
+}
+
+.specific-food {
+    margin-top: 10px;
+}
+
+#foods-list-container,
+.specific-food {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #f1f1f1;
+}
+
+#foods-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#foods-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+#foods-list li:last-child {
+    border-bottom: none;
+}
+
+@media screen and (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-center,
+    .nav-left {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 10px; /* Added margin bottom for spacing */
+    }
+
+    .btn-home {
+        margin-top: 10px;
+    }
+}

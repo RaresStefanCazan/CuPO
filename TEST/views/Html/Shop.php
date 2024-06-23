@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Page</title>
-    <link rel="stylesheet" href="/CuPO/WEB/TEST/views/Style-CSS/styles-shop2.css">
+    <link rel="stylesheet" href="/CuPO/WEB/TEST/views/Style-CSS/styles-shop.css">
 </head>
 <body>
     <header class="header" id="header">
@@ -36,7 +36,7 @@
                 <button onclick="filterByCategory('Vegetables')">Vegetables</button>
                 <button onclick="filterByCategory('Fruits')">Fruits</button>
                 <button onclick="filterByCategory('Meat')">Meat</button>
-                <!-- Add more buttons for other categories as needed -->
+                <button onclick="filterByCategory('Dairy')">Dairy</button>
             </div>
         </div>
 
