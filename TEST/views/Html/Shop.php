@@ -74,7 +74,7 @@
         });
 
         function fetchFoods() {
-            fetch('/home/foods')
+            fetch('/CuPO/WEB/TEST/controllers/shop-controller.php')
                 .then(response => response.json())
                 .then(data => {
                     renderFoods(data); // Initial render of foods
@@ -84,10 +84,10 @@
 
         function renderFoods(data) {
             const foodsGrid = document.getElementById('foodsGrid');
-            foodsGrid.innerHTML = ''; 
+            foodsGrid.innerHTML = '';
 
             data.forEach(food => {
-                const gridItem = createGridItem(food); 
+                const gridItem = createGridItem(food);
                 foodsGrid.appendChild(gridItem);
             });
         }
@@ -112,7 +112,7 @@
         }
 
         function sortLowToHigh() {
-            fetch('/home/foods?sort=low_to_high')
+            fetch('/CuPO/WEB/TEST/controllers/shop-controller.php?sort=low_to_high')
                 .then(response => response.json())
                 .then(data => {
                     renderFoods(data); // Render sorted foods
@@ -209,59 +209,43 @@
         }, false);
 
         document.getElementById('addToCartForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+            event.preventDefault();
 
-    const foodId = document.getElementById('foodId').value;
-    const listId = getCookie('currentListId'); // Assuming list_id is stored in a cookie
-    const quantity = document.getElementById('quantity').value;
+            const foodId = document.getElementById('foodId').value;
+            const listId = getCookie('currentListId'); // Assuming list_id is stored in a cookie
+            const quantity = document.getElementById('quantity').value;
 
-    console.log('foodId:', foodId); // Debugging line
-    console.log('listId:', listId); // Debugging line
-    console.log('quantity:', quantity); // Debugging line
+            if (!foodId || !listId || !quantity) {
+                alert('Food ID, List ID, and Quantity are required');
+                return;
+            }
 
-    if (!foodId || !listId) {
-        alert('Food ID and List ID are required');
-        return;
-    }
+            const postData = {
+                food_id: foodId,
+                list_id: listId,
+                quantity: quantity
+            };
 
-    const postData = {
-        food_id: foodId,
-        list_id: listId,
-        quantity: quantity
-    };
+            fetch('/home/Basket', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(postData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                closeModal(); // Close the modal after adding to basket
+            })
+            .catch(error => console.error('Error adding to basket:', error));
+        });
 
-    console.log('Sending data:', postData); // Debugging line
-
-    fetch('/home/Basket', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(postData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Server response:', data); // Debugging line
-        alert(data.message);
-        closeModal(); // Close the modal after adding to basket
-    })
-    .catch(error => {
-        console.error('Error adding to basket:', error);
-    });
-});
-
-function getCookie(name) {
-    let cookieArr = document.cookie.split(";");
-    for (let i = 0; i < cookieArr.length; i++) {
-        let cookiePair = cookieArr[i].split("=");
-        if (name == cookiePair[0].trim()) {
-            return decodeURIComponent(cookiePair[1]);
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
         }
-    }
-    return null;
-}
-
-
     </script>
 </body>
 </html>
