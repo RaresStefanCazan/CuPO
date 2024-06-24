@@ -1,4 +1,4 @@
-<?php
+<?php 
 class BasketModel {
     private $conn;
 
@@ -7,7 +7,7 @@ class BasketModel {
     }
 
     public function getBasketItemsByListId($listId) {
-        $stmt = $this->conn->prepare("SELECT items FROM lists WHERE id = ?");
+        $stmt = $this->conn->prepare("SELECT items, quantity FROM lists WHERE id = ?");
         $stmt->bind_param("i", $listId);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -15,18 +15,22 @@ class BasketModel {
 
         error_log("List data: " . json_encode($list)); // Debugging: afișăm datele listei
 
-        if ($list && !empty($list['items'])) {
-            $items = $list['items'];
-            $itemsArray = explode(',', $items);
+        if ($list && !empty($list['items']) && !empty($list['quantity'])) {
+            $items = explode(',', $list['items']);
+            $quantities = explode(',', $list['quantity']);
 
-            if (!empty($itemsArray)) {
-                $ids = implode(',', array_map('intval', $itemsArray));
+            if (count($items) == count($quantities)) {
+                $ids = implode(',', array_map('intval', $items));
                 $sql = "SELECT * FROM foods WHERE id IN ($ids)";
                 $result = $this->conn->query($sql);
 
                 $basketItems = [];
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
+                        $index = array_search($row['id'], $items);
+                        $quantity = $quantities[$index];
+                        $row['quantity'] = $quantity;
+                        $row['total_price'] = $row['price'] * $quantity;
                         $basketItems[] = $row;
                     }
                 }
@@ -39,47 +43,57 @@ class BasketModel {
         return [];
     }
 
-    public function addToBasket($listId, $foodId) {
-        $stmt = $this->conn->prepare("SELECT items FROM lists WHERE id = ?");
+    public function addToBasket($listId, $foodId, $quantity) {
+        $stmt = $this->conn->prepare("SELECT items, quantity FROM lists WHERE id = ?");
         $stmt->bind_param("i", $listId);
         $stmt->execute();
         $result = $stmt->get_result();
         $list = $result->fetch_assoc();
         
         if ($list) {
-            $items = $list['items'];
-            $itemsArray = explode(',', $items);
+            $items = $list['items'] ? explode(',', $list['items']) : [];
+            $quantities = $list['quantity'] ? explode(',', $list['quantity']) : [];
     
-            if (!in_array($foodId, $itemsArray)) {
-                $itemsArray[] = $foodId;
-                $updatedItems = implode(',', $itemsArray);
-    
-                $stmt = $this->conn->prepare("UPDATE lists SET items = ? WHERE id = ?");
-                $stmt->bind_param("si", $updatedItems, $listId);
-                return $stmt->execute();
+            $index = array_search($foodId, $items);
+            if ($index === false) {
+                $items[] = $foodId;
+                $quantities[] = $quantity;
+            } else {
+                $quantities[$index] += $quantity;
             }
+    
+            $updatedItems = implode(',', $items);
+            $updatedQuantities = implode(',', $quantities);
+    
+            $stmt = $this->conn->prepare("UPDATE lists SET items = ?, quantity = ? WHERE id = ?");
+            $stmt->bind_param("ssi", $updatedItems, $updatedQuantities, $listId);
+            return $stmt->execute();
         }
         
         return false;
     }
 
     public function removeFromBasket($listId, $foodId) {
-        $stmt = $this->conn->prepare("SELECT items FROM lists WHERE id = ?");
+        $stmt = $this->conn->prepare("SELECT items, quantity FROM lists WHERE id = ?");
         $stmt->bind_param("i", $listId);
         $stmt->execute();
         $result = $stmt->get_result();
         $list = $result->fetch_assoc();
         
         if ($list) {
-            $items = $list['items'];
-            $itemsArray = explode(',', $items);
+            $items = explode(',', $list['items']);
+            $quantities = explode(',', $list['quantity']);
     
-            if (in_array($foodId, $itemsArray)) {
-                $itemsArray = array_diff($itemsArray, [$foodId]);
-                $updatedItems = implode(',', $itemsArray);
+            $index = array_search($foodId, $items);
+            if ($index !== false) {
+                array_splice($items, $index, 1);
+                array_splice($quantities, $index, 1);
     
-                $stmt = $this->conn->prepare("UPDATE lists SET items = ? WHERE id = ?");
-                $stmt->bind_param("si", $updatedItems, $listId);
+                $updatedItems = implode(',', $items);
+                $updatedQuantities = implode(',', $quantities);
+    
+                $stmt = $this->conn->prepare("UPDATE lists SET items = ?, quantity = ? WHERE id = ?");
+                $stmt->bind_param("ssi", $updatedItems, $updatedQuantities, $listId);
                 return $stmt->execute();
             }
         }
@@ -87,4 +101,3 @@ class BasketModel {
         return false;
     }
 }
-?>

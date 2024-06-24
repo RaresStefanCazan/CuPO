@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Verific
 function verifySession() {
     if (!isset($_SESSION['username']) || !isset($_COOKIE['user_email'])) {
         return false;
@@ -9,13 +8,11 @@ function verifySession() {
     return $_SESSION['username'] === $_COOKIE['user_email'];
 }
 
-// În fiecare script de pagină care necesită autentificare
 if (!verifySession()) {
     http_response_code(401);
     echo json_encode(['message' => 'Unauthorized']);
     exit;
 }
-
 
 header('Content-Type: application/json');
 
@@ -41,4 +38,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     http_response_code(405);
     echo json_encode(['message' => 'Invalid request method']);
 }
-?>

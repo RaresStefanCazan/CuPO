@@ -51,6 +51,17 @@
             font-weight: bold;
         }
 
+        hr {
+            margin: 40px 0;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+        
+        #total-sum {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
