@@ -1,5 +1,5 @@
 <?php
-// ShopController.php
+
 
 require_once __DIR__ . '/../model/ShopModel.php';
 require_once __DIR__ . '/../model/database.php';
@@ -15,7 +15,7 @@ function verifySession()
     return $_SESSION['username'] === $_COOKIE['user_email'];
 }
 
-// În fiecare script de pagină care necesită autentificare
+
 if (!verifySession()) {
     http_response_code(401);
     echo json_encode(['message' => 'Unauthorized']);
@@ -106,10 +106,10 @@ class ShopController
     }
 }
 
-// Initialize the controller
+
 $shopController = new ShopController($conn);
 
-// Check request method and route accordingly
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET['sort'])) {
         $sortOrder = $_GET['sort'];

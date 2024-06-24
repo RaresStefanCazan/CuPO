@@ -1,12 +1,12 @@
 <?php
-// ProfileController.php
+
 
 require_once __DIR__ . '/../model/ProfileModel.php';
 require_once __DIR__ . '/../model/database.php';
 
 session_start();
 
-// Verify Session
+
 function verifySession() {
     if (!isset($_SESSION['username']) || !isset($_COOKIE['user_email'])) {
         return false;
@@ -14,7 +14,6 @@ function verifySession() {
     return urldecode($_SESSION['username']) === urldecode($_COOKIE['user_email']);
 }
 
-// Authentication check
 if (!verifySession()) {
     http_response_code(401);
     echo json_encode(['message' => 'Unauthorized']);
@@ -31,7 +30,7 @@ class ProfileController {
     public function getProfile($username) {
         header('Content-Type: application/json');
 
-        error_log("Fetching profile for user: $username"); // Log the username
+        error_log("Fetching profile for user: $username");
 
         $profile = $this->profileModel->getUserProfile($username);
 
@@ -46,7 +45,7 @@ class ProfileController {
     public function updateProfile($data) {
         header('Content-Type: application/json');
 
-        // Log the received data
+      
         error_log("Received data for update: " . json_encode($data));
 
         if (!isset($data['first_name']) || !isset($data['last_name']) || !isset($data['weight_kg']) || !isset($data['height_cm']) || !isset($data['gender']) || !isset($data['email']) || !isset($data['phone']) || !isset($data['address']) || !isset($data['budget_per_week'])) {
@@ -68,13 +67,12 @@ class ProfileController {
             'budget_per_week' => $data['budget_per_week']
         ];
 
-        // Log the data to be updated
+       
         error_log("Updating profile for user: $username with data: " . json_encode($profileData));
 
-        // Attempt to update the profile in the database
         $updateResult = $this->profileModel->updateUserProfile($username, $profileData);
         
-        // Log the result of the update attempt
+    
         error_log("Update result: " . ($updateResult ? "Success" : "Failure"));
 
         if ($updateResult) {
@@ -86,10 +84,9 @@ class ProfileController {
     }
 }
 
-// Initialize the controller
+
 $profileController = new ProfileController($conn);
 
-// Check request method and route accordingly
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_SESSION['username'])) {
         $profileController->getProfile(urldecode($_SESSION['username']));
@@ -99,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $data = json_decode(file_get_contents('php://input'), true);
-    // Log the received raw data for debugging
+  
     error_log("Raw data received: " . file_get_contents('php://input'));
     $profileController->updateProfile($data);
 } else {

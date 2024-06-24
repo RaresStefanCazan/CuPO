@@ -12,12 +12,12 @@ class AdminController {
             exit();
         }
 
-        // Render the admin view
+       
         $this->renderAdminPage();
     }
 
     private function renderAdminPage() {
-        require_once __DIR__ . '/../views/Html/Admin.php';
+        require_once __DIR__ . '/../views/php/Admin.php';
     }
 
 
@@ -28,12 +28,12 @@ class AdminController {
             exit();
         }
 
-        // Render the Foods Admin view
+      
         $this->renderFoodsAdminPage();
     }
 
     private function renderFoodsAdminPage() {
-        require_once __DIR__ . '/../views/Html/FoodsAdmin.php';
+        require_once __DIR__ . '/../views/php/FoodsAdmin.php';
     }
 }
 ?>

@@ -202,12 +202,12 @@ button[type="submit"]:hover {
     }
 
     .topnav-search {
-        width: 100%; /* Adjusted width for responsiveness */
-        margin-bottom: 10px; /* Added margin bottom for spacing */
+        width: 100%; 
+        margin-bottom: 10px; 
     }
 
     .btn-home {
-        margin-top: 10px; /* Adjusted margin top for spacing */
+        margin-top: 10px; 
     }
 }
 

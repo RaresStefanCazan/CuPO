@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Verificare sesiune
+
 function verifySession() {
     if (!isset($_SESSION['username']) || !isset($_COOKIE['user_email'])) {
         return false;
@@ -9,7 +9,7 @@ function verifySession() {
     return $_SESSION['username'] === $_COOKIE['user_email'];
 }
 
-// În fiecare script de pagină care necesită autentificare
+
 if (!verifySession()) {
     http_response_code(401);
     echo json_encode(['message' => 'Unauthorized']);
@@ -26,7 +26,7 @@ try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = json_decode(file_get_contents('php://input'), true);
 
-        // Logare date primite
+      
         error_log("Data received in add_to_basket.php: " . json_encode($data));
 
         if (isset($data['food_id']) && isset($data['list_id']) && isset($data['quantity'])) {

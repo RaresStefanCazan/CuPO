@@ -63,7 +63,7 @@ class UsersAdminController {
     }
 }
 
-// Route the request
+// ruteaza request ul
 $usersAdminController = new UsersAdminController($conn);
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $usersAdminController->getUsers();

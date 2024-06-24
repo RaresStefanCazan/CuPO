@@ -1,5 +1,5 @@
 <?php
-// StatisticsModel.php
+
 
 class StatisticsModel {
     private $conn;
@@ -27,10 +27,10 @@ class StatisticsModel {
     }
 
     public function calculateBMI($height_cm, $weight_kg) {
-        // Ensure height is in meters
+        
         $height_m = $height_cm / 100;
         
-        // Calculate BMI
+        // calculeaza BMI
         if ($height_m > 0) {
             $bmi = $weight_kg / ($height_m * $height_m);
             return $bmi;

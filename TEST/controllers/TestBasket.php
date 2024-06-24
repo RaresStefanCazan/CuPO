@@ -1,8 +1,8 @@
 <?php
-// Setarea header-ului pentru JSON
+
 header('Content-Type: application/json');
 
-// Redirecționarea cererilor în funcție de metoda HTTP
+
 try {
     switch ($_SERVER['REQUEST_METHOD']) {
         case 'GET':

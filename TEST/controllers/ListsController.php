@@ -12,7 +12,7 @@ function verifySession() {
     return $_SESSION['username'] === $_COOKIE['user_email'];
 }
 
-// În fiecare script de pagină care necesită autentificare
+
 if (!verifySession()) {
     http_response_code(401);
     echo json_encode(['message' => 'Unauthorized']);
@@ -74,7 +74,7 @@ class ListsController {
         $result = $this->listsModel->createList($data['name'], $email, $data['group']);
     
         if ($result) {
-            $listId = $this->listsModel->getLastInsertId(); // Get the last inserted ID
+            $listId = $this->listsModel->getLastInsertId(); 
             echo json_encode(['success' => true, 'listId' => $listId]);
         } else {
             http_response_code(500);
@@ -85,7 +85,7 @@ class ListsController {
     public function addEmailToList() {
         $data = json_decode(file_get_contents('php://input'), true);
     
-        // Debugging: afișăm valorile care sunt primite
+       
         error_log('Received data: ' . print_r($data, true));
     
         if (!isset($data['listId']) || !isset($data['email'])) {

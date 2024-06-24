@@ -9,7 +9,7 @@ function verifySession() {
     return $_SESSION['username'] === $_COOKIE['user_email'];
 }
 
-// În fiecare script de pagină care necesită autentificare
+
 if (!verifySession()) {
     http_response_code(401);
     echo json_encode(['message' => 'Unauthorized']);

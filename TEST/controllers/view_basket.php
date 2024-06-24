@@ -28,11 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         exit;
     }
 
-    error_log("Fetching items for list ID: $listId"); // Debugging: logăm ID-ul listei
+    error_log("Fetching items for list ID: $listId"); 
 
     $basketModel = new BasketModel($conn);
     $basketItems = $basketModel->getBasketItemsByListId($listId);
-    error_log("Basket items fetched: " . json_encode($basketItems)); // Debugging: logăm produsele din coș
+    error_log("Basket items fetched: " . json_encode($basketItems)); 
     echo json_encode($basketItems);
 } else {
     http_response_code(405);

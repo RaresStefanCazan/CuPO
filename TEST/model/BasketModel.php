@@ -13,7 +13,7 @@ class BasketModel {
         $result = $stmt->get_result();
         $list = $result->fetch_assoc();
 
-        error_log("List data: " . json_encode($list)); // Debugging: afișăm datele listei
+        error_log("List data: " . json_encode($list)); 
 
         if ($list && !empty($list['items']) && !empty($list['quantity'])) {
             $items = explode(',', $list['items']);
@@ -35,7 +35,7 @@ class BasketModel {
                     }
                 }
 
-                error_log("Basket items: " . json_encode($basketItems)); // Debugging: afișăm produsele din coș
+                error_log("Basket items: " . json_encode($basketItems)); 
                 return $basketItems;
             }
         }

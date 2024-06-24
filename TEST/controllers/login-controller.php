@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['username'] = $username;
             $_SESSION['role'] = $loginResult['role'];
 
-            // Setează un cookie pentru email
+            
             setcookie('user_email', $username, time() + (86400 * 30), "/"); // 86400 = 1 zi
 
             echo json_encode(['message' => 'Login successful', 'role' => $loginResult['role']]);

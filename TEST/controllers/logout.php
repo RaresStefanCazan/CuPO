@@ -4,7 +4,7 @@ session_unset();
 session_destroy();
 setcookie(session_name(), '', time() - 3600, '/');
 
-// Ștergem și cookie-ul user_email
+
 setcookie('user_email', '', time() - 3600, '/');
 
 setcookie('currentListId', '', time() - 3600, '/');

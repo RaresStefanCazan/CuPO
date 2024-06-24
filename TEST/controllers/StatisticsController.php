@@ -1,12 +1,12 @@
 <?php
-// StatisticsController.php
+
 
 require_once __DIR__ . '/../model/StatisticsModel.php';
 require_once __DIR__ . '/../model/database.php';
 
 session_start();
 
-// Verify Session
+
 function verifySession() {
     if (!isset($_SESSION['username']) || !isset($_COOKIE['user_email'])) {
         return false;
@@ -14,7 +14,7 @@ function verifySession() {
     return urldecode($_SESSION['username']) === urldecode($_COOKIE['user_email']);
 }
 
-// Authentication check
+
 if (!verifySession()) {
     http_response_code(401);
     echo json_encode(['message' => 'Unauthorized']);
@@ -33,17 +33,17 @@ class StatisticsController {
 
         $username = urldecode($_SESSION['username']);
         
-        // Get user data from the model
+        
         $userData = $this->statisticsModel->getUserData($username);
 
         if ($userData) {
             $height_cm = $userData['height_cm'];
             $weight_kg = $userData['weight_kg'];
 
-            // Calculate BMI
+            // calculeaza BMI
             $bmi = $this->statisticsModel->calculateBMI($height_cm, $weight_kg);
 
-            // Interpret BMI category
+            // interpreteaza BMI 
             $bmiCategory = $this->statisticsModel->interpretBMI($bmi);
 
             echo json_encode([
@@ -62,10 +62,8 @@ class StatisticsController {
     }
 }
 
-// Initialize the controller
 $statisticsController = new StatisticsController($conn);
 
-// Check request method and route accordingly
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $statisticsController->getUserStatistics();
 } else {

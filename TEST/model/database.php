@@ -10,5 +10,5 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Nu mai folosi echo "Connected successfully";
+
 ?>

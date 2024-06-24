@@ -18,7 +18,7 @@ html {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     transition: top 0.5s;
     top: 0;
-    background-color: #2b3637; /* Dark grey header */
+    background-color: #2b3637;
 }
 
 .header .container {
@@ -37,17 +37,16 @@ html {
 
 .header-content1 a {
     color: #fff;
-    text-decoration: none; /* Remove underline */
+    text-decoration: none; 
 }
 
 .header-content1 a:hover {
-    color: #fff; /* Keep text white on hover */
+    color: #fff; 
 }
 
-/* Main content styles */
 main {
     padding: 120px 1em 1em;
-    /* Adjusted padding for header */
+    
 }
 
 .metadata-section {
@@ -94,10 +93,10 @@ main {
 }
 
 .metadata-section .btn:hover {
-    background-color: #45a049; /* Darker green on hover */
+    background-color: #45a049; 
 }
 
-/* Footer styles */
+
 footer {
     text-align: center;
     padding: 1em 0;

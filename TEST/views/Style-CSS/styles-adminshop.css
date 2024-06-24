@@ -108,7 +108,7 @@ body, html {
     font-size: 1em;
 }
 
-/* Modal styles */
+
 .modal {
     display: none;
     position: fixed;
@@ -168,7 +168,7 @@ button[type="submit"]:hover {
     transform: scale(1.05);
 }
 
-/* Additional styles for the form */
+
 .modal-content form {
     text-align: left;
     margin-top: 20px;
@@ -201,7 +201,7 @@ button[type="submit"] {
     font-size: 18px;
 }
 
-/* Responsive styles */
+
 @media screen and (max-width: 768px) {
     .modal-content {
         width: 90%;

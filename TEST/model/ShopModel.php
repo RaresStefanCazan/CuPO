@@ -1,5 +1,5 @@
 <?php
-// ShopModel.php
+
 
 class ShopModel {
     private $conn;
@@ -37,7 +37,7 @@ class ShopModel {
     public function getFoodsByQuery($query) {
         $query = $this->conn->real_escape_string($query);
         
-        // Separate query for items starting with the query and containing the query
+      
         $sql = "(SELECT * FROM foods WHERE aliment LIKE '$query%') 
                 UNION 
                 (SELECT * FROM foods WHERE aliment LIKE '%$query%' AND aliment NOT LIKE '$query%')";

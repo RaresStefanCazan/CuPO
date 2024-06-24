@@ -2,10 +2,12 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
+    width: 100%;
     font-size: 16px;
     font-family: 'Cosmic Sans MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #ffffff;
     color: white;
+    overflow: hidden;
 }
 
 a {
@@ -34,6 +36,7 @@ a:hover {
 }
 
 .full-screen-image {
+    background-image: url('/CuPO/WEB/TEST/views/photo/appetizing-vegetable-salad-with-eggs-avocado-wooden-background.jpg');
     background-size: cover;
     background-position: center;
     width: 100vw;
@@ -63,4 +66,85 @@ a:hover {
     margin-left: 2rem;
     font-size: 1.2em;
     margin-bottom: 0.5rem;
+}
+
+
+@media (max-width: 1200px) {
+    .header-content1 img {
+        width: 18%;
+    }
+
+    .header-content1 {
+        font-size: 1.8em;
+    }
+
+    .overlay .header-content2 {
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 992px) {
+    .header-content1 img {
+        width: 15%;
+    }
+
+    .header-content1 {
+        font-size: 1.6em;
+    }
+
+    .overlay .header-content2 {
+        font-size: 1.2em;
+    }
+
+    .header-content2 h2 {
+        margin-left: 1.5rem;
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content1 img {
+        width: 12%;
+    }
+
+    .header-content1 {
+        font-size: 1.4em;
+        justify-content: center;
+    }
+
+    .overlay .header-content2 {
+        align-items: center;
+        text-align: center;
+    }
+
+    .header-content2 h2 {
+        margin-left: 0;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-content1 img {
+        width: 10%;
+    }
+
+    .header-content1 {
+        font-size: 1.2em;
+    }
+
+    .overlay {
+        padding: 0.5rem;
+        top: 45%;
+    }
+
+    .overlay .header-content2 {
+        font-size: 1em;
+        align-items: center;
+    }
+
+    .header-content2 h2 {
+        margin-left: 0;
+        margin-bottom: 0.3rem;
+        font-size: 0.9em;
+    }
 }

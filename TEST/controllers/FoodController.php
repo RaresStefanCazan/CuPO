@@ -14,28 +14,28 @@ class FoodController {
         $foods = [];
         switch ($category) {
             case 'gainWeight':
-                // Get foods that are higher in calories and suitable for gaining weight
-                $foods = $this->foodModel->getFoodsAboveCalories(250); // Adjust as needed
+               
+                $foods = $this->foodModel->getFoodsAboveCalories(250); 
                 break;
             case 'maintainWeight':
-                // Get foods that are moderate in calories and suitable for maintaining weight
-                $foods = $this->foodModel->getFoodsInRangeCalories(150, 250); // Adjust as needed
+              
+                $foods = $this->foodModel->getFoodsInRangeCalories(150, 250); 
                 break;
             case 'loseWeight':
-                // Get foods that are lower in calories and suitable for losing weight
-                $foods = $this->foodModel->getFoodsBelowCalories(150); // Adjust as needed
+              
+                $foods = $this->foodModel->getFoodsBelowCalories(150); 
                 break;
             case 'underweight':
-                // Get foods that are higher in calories to help gain weight
-                $foods = $this->foodModel->getFoodsAboveCalories(250); // Example threshold, adjust as needed
+             
+                $foods = $this->foodModel->getFoodsAboveCalories(250);
                 break;
             default:
-                // Default to getting all foods
+               
                 $foods = $this->foodModel->getFoodData();
                 break;
         }
 
-        // Limit to 10 foods if more than 10 are retrieved
+        
         $foods = array_slice($foods, 0, 10);
 
         $this->respondWithFoodData($foods);
@@ -72,10 +72,10 @@ class FoodController {
     }
 }
 
-// Initialize the controller
+
 $foodController = new FoodController($conn);
 
-// Check request method and route accordingly
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $action = $_GET['action'] ?? '';
     switch ($action) {

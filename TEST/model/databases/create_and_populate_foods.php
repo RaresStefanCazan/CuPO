@@ -10,7 +10,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Crearea tabelului foods
+
 $createTableSQL = "CREATE TABLE IF NOT EXISTS foods (
     id INT AUTO_INCREMENT PRIMARY KEY,
     aliment VARCHAR(255) NOT NULL,
@@ -25,7 +25,7 @@ $createTableSQL = "CREATE TABLE IF NOT EXISTS foods (
     specific_restaurants VARCHAR(255)
 )";
 
-// Adăugarea noilor coloane în tabela foods
+
 $alterTableSQL = "ALTER TABLE foods
     ADD COLUMN weight INT,
     ADD COLUMN protein DECIMAL(5, 2),
@@ -44,7 +44,7 @@ if ($conn->query($alterTableSQL) === TRUE) {
 } else {
     echo "Error adding columns: " . $conn->error;
 }
-// Popularea tabelului cu date de test
+
 $insertDataSQL = "INSERT INTO foods (aliment, price, category, image_url, restrictions, perishability, validity, availability_season, availability_region, specific_restaurants) VALUES
 ('Apple', 5.99, 'Fruits', '/CuPO/WEB/TEST/views/images/apple.jpg', 'None', 7, '2024-06-30', 'Summer', 'North America', 'Restaurant A'),
 ('Coconut', 4.50, 'Fruits', '/CuPO/WEB/TEST/views/images/coconut.jpg', 'None', 14, '2024-07-15', 'All Year', 'Tropical Regions', 'Restaurant B'),
@@ -101,7 +101,7 @@ if ($conn->query($insertDataSQL) === TRUE) {
     echo "Error inserting data: " . $conn->error;
 }
 
-// Popularea noilor coloane cu date reale
+
 $updateDataSQL = "
 UPDATE foods SET weight = 182, protein = 0.3, fiber = 4.4, calories = 95 WHERE aliment = 'Apple';
 UPDATE foods SET weight = 400, protein = 2.0, fiber = 9.0, calories = 354 WHERE aliment = 'Coconut';
