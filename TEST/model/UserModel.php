@@ -52,23 +52,6 @@ class UserModel {
         }
     }
   
-    public function getUserRole($username) {
-        try {
-            $stmt = $this->conn->prepare("SELECT role FROM users WHERE user = ?");
-            $stmt->bind_param("s", $username);
-            $stmt->execute();
-             /** @var string $role */
-            $stmt->bind_result($role);
-            $stmt->fetch();
-            return $role;
-        } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
-            return null;
-        }
-    }
-    
-
-
 }
 
 ?>
