@@ -3,25 +3,21 @@ ob_start();
 
 require_once('TCPDF/tcpdf.php'); 
 
-
 $servername = "localhost:3307";
 $username = "root";
 $password = "";
 $dbname_users = "cupo_users";
 $dbname_foods = "cupo_users";
 
-
 $conn_users = new mysqli($servername, $username, $password, $dbname_users);
 if ($conn_users->connect_error) {
     die("Connection to users database failed: " . $conn_users->connect_error);
 }
 
-
 $conn_foods = new mysqli($servername, $username, $password, $dbname_foods);
 if ($conn_foods->connect_error) {
     die("Connection to foods database failed: " . $conn_foods->connect_error);
 }
-
 
 function fetchUserData($email, $conn_users) {
     $sql = "SELECT * FROM users WHERE user = ?";
@@ -37,7 +33,6 @@ function fetchUserData($email, $conn_users) {
     }
     return $result->fetch_assoc();
 }
-
 
 function calculateBMI($weight_kg, $height_cm) {
     if ($height_cm > 0) {
@@ -72,8 +67,6 @@ function calculateIdealWeightRange($height_cm, $bmiCategory) {
             $idealWeight = 24.9 * ($height_cm * $height_cm / 10000);
             break;
         case 'Overweight':
-            $idealWeight = 29.9 * ($height_cm * $height_cm / 10000);
-            break;
         case 'Obese':
             $idealWeight = 29.9 * ($height_cm * $height_cm / 10000);
             break;
@@ -108,54 +101,53 @@ function fetchRecommendedFoods($conn_foods, $goal, $calorie_range) {
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
-
 $email = $_GET['email'] ?? '';
 $email = urldecode($email); 
 
-
 $userData = fetchUserData($email, $conn_users);
-
 
 $weight_kg = $userData['weight_kg'];
 $height_cm = $userData['height_cm'];
 $bmi = calculateBMI($weight_kg, $height_cm);
-
 $bmiCategory = interpretBMI($bmi);
-
 
 $idealWeightRange = calculateIdealWeightRange($height_cm, $bmiCategory);
 
-
 $currentWeight = $weight_kg;
-$idealWeight = $idealWeightRange['min']; 
-$goal = '';
+$idealWeight = $idealWeightRange['min'];
 $calorie_range = ['min' => 0, 'max' => 0];
-if ($currentWeight < $idealWeight) {
-    $weightDifference = $idealWeight - $currentWeight;
-    $weightDifferenceText = "You should gain approximately {$weightDifference} kg to reach your ideal weight.";
-    $goal = 'gain';
-    $calorie_range = ['min' => 300, 'max' => 500]; 
-} elseif ($currentWeight > $idealWeight) {
-    $weightDifference = $currentWeight - $idealWeight;
-    $weightDifferenceText = "You should lose approximately {$weightDifference} kg to reach your ideal weight.";
-    $goal = 'lose';
-    $calorie_range = ['min' => 100, 'max' => 300]; 
-} else {
+
+if ($bmiCategory === 'Normal weight') {
+    $goal = 'maintain';
     $weightDifferenceText = "You are at your ideal weight.";
+} else {
+    if ($currentWeight < $idealWeight) {
+        $goal = 'gain';
+        $weightDifference = $idealWeight - $currentWeight;
+        $weightDifferenceText = "You should gain approximately {$weightDifference} kg to reach your ideal weight.";
+        $calorie_range = ['min' => 300, 'max' => 500];
+    } elseif ($currentWeight > $idealWeight) {
+        $goal = 'lose';
+        $weightDifference = $currentWeight - $idealWeight;
+        $weightDifferenceText = "You should lose approximately {$weightDifference} kg to reach your ideal weight.";
+        $calorie_range = ['min' => 95, 'max' => 300]; 
+    } else {
+        $goal = 'maintain';
+        $weightDifferenceText = "You are at your ideal weight.";
+    }
 }
 
-
 $recommendedFoods = [];
-if (!empty($goal)) {
+if ($bmiCategory === 'Normal weight') {
+    $recommendedFoods = fetchRecommendedFoods($conn_foods, $goal, ['min' => 200, 'max' => 215]);
+} elseif (!empty($goal)) {
     $recommendedFoods = fetchRecommendedFoods($conn_foods, $goal, $calorie_range);
 }
 
 $conn_users->close();
 $conn_foods->close();
 
-
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-
 
 $pdf->SetCreator('Your Name');
 $pdf->SetAuthor('Your Name');
@@ -163,12 +155,8 @@ $pdf->SetTitle('User and Food Information');
 $pdf->SetSubject('User and Food Statistics');
 $pdf->SetKeywords('TCPDF, PDF, example, sample');
 
-
 $pdf->AddPage();
-
-
 $pdf->SetFont('helvetica', '', 12);
-
 
 $pdf->Cell(0, 10, 'User Information', 0, 1, 'C');
 $pdf->Ln(5); 
@@ -182,12 +170,29 @@ $pdf->Cell(0, 10, $weightDifferenceText, 0, 1);
 
 $pdf->Ln(10); 
 
-
-if (!empty($goal)) {
+if ($bmiCategory === 'Normal weight') {
+    $pdf->Cell(0, 10, "Recommended Foods for Normal Weight (200-215 Calories):", 0, 1, 'C');
+    $pdf->Ln(5); 
+    
+    $pdf->Cell(50, 10, 'Food Name', 1, 0, 'C');
+    $pdf->Cell(30, 10, 'Calories', 1, 0, 'C');
+    $pdf->Cell(30, 10, 'Protein (g)', 1, 0, 'C');
+    $pdf->Cell(30, 10, 'Fiber (g)', 1, 1, 'C');
+    
+    if (empty($recommendedFoods)) {
+        $pdf->Cell(0, 10, 'No recommended foods found.', 0, 1, 'C');
+    } else {
+        foreach ($recommendedFoods as $food) {
+            $pdf->Cell(50, 10, $food['aliment'], 1);
+            $pdf->Cell(30, 10, $food['calories'], 1);
+            $pdf->Cell(30, 10, $food['protein'], 1);
+            $pdf->Cell(30, 10, $food['fiber'], 1, 1);
+        }
+    }
+} elseif (!empty($goal)) {
     $pdf->Cell(0, 10, "Recommended Foods to {$goal} weight:", 0, 1, 'C');
     $pdf->Ln(5); 
     
-   
     $pdf->Cell(50, 10, 'Food Name', 1, 0, 'C');
     $pdf->Cell(30, 10, 'Calories', 1, 0, 'C');
     $pdf->Cell(30, 10, 'Protein (g)', 1, 0, 'C');
@@ -205,10 +210,4 @@ if (!empty($goal)) {
     }
 }
 
-
-ob_end_clean();
-
-
-$pdfFileName = 'user_food_information.pdf';
-$pdf->Output($pdfFileName, 'D'); 
-?>
+$pdf->Output('user_food_information.pdf', 'D');

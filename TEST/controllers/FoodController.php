@@ -23,11 +23,11 @@ class FoodController {
                 break;
             case 'loseWeight':
               
-                $foods = $this->foodModel->getFoodsBelowCalories(150); 
+                $foods = $this->foodModel->getFoodsBelowCalories(0, 150); 
                 break;
             case 'underweight':
              
-                $foods = $this->foodModel->getFoodsAboveCalories(250);
+                $foods = $this->foodModel->getFoodsAboveCalories(250,);
                 break;
             default:
                

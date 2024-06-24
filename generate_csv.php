@@ -1,6 +1,5 @@
 <?php
-
-ob_start();
+ob_start(); 
 
 $servername = "localhost:3307";
 $username = "root";
@@ -13,12 +12,10 @@ if ($conn_users->connect_error) {
     die("Connection to users database failed: " . $conn_users->connect_error);
 }
 
-
 $conn_foods = new mysqli($servername, $username, $password, $dbname_foods);
 if ($conn_foods->connect_error) {
     die("Connection to foods database failed: " . $conn_foods->connect_error);
 }
-
 
 function fetchUserData($email, $conn_users) {
     $sql = "SELECT * FROM users WHERE user = ?";
@@ -59,7 +56,6 @@ function interpretBMI($bmi) {
     }
 }
 
-
 function calculateIdealWeightRange($height_cm, $bmiCategory) {
     switch ($bmiCategory) {
         case 'Underweight':
@@ -69,8 +65,6 @@ function calculateIdealWeightRange($height_cm, $bmiCategory) {
             $idealWeight = 24.9 * ($height_cm * $height_cm / 10000);
             break;
         case 'Overweight':
-            $idealWeight = 29.9 * ($height_cm * $height_cm / 10000);
-            break;
         case 'Obese':
             $idealWeight = 29.9 * ($height_cm * $height_cm / 10000);
             break;
@@ -90,7 +84,6 @@ function calculateIdealWeightRange($height_cm, $bmiCategory) {
     }
 }
 
-
 function fetchRecommendedFoods($conn_foods, $goal, $calorie_range) {
     $sql = "SELECT * FROM foods WHERE calories BETWEEN ? AND ? ORDER BY calories LIMIT 10";
     $stmt = $conn_foods->prepare($sql);
@@ -106,50 +99,51 @@ function fetchRecommendedFoods($conn_foods, $goal, $calorie_range) {
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
-
 $email = $_GET['email'] ?? '';
 $email = urldecode($email); 
-
 
 $userData = fetchUserData($email, $conn_users);
 
 $weight_kg = $userData['weight_kg'];
 $height_cm = $userData['height_cm'];
 $bmi = calculateBMI($weight_kg, $height_cm);
-
 $bmiCategory = interpretBMI($bmi);
-
 
 $idealWeightRange = calculateIdealWeightRange($height_cm, $bmiCategory);
 
 $currentWeight = $weight_kg;
-$idealWeight = $idealWeightRange['min']; 
-$goal = '';
+$idealWeight = $idealWeightRange['min'];
 $calorie_range = ['min' => 0, 'max' => 0];
-if ($currentWeight < $idealWeight) {
-    $weightDifference = $idealWeight - $currentWeight;
-    $weightDifferenceText = "You should gain approximately {$weightDifference} kg to reach your ideal weight.";
-    $goal = 'gain';
-    $calorie_range = ['min' => 300, 'max' => 500]; 
-} elseif ($currentWeight > $idealWeight) {
-    $weightDifference = $currentWeight - $idealWeight;
-    $weightDifferenceText = "You should lose approximately {$weightDifference} kg to reach your ideal weight.";
-    $goal = 'lose';
-    $calorie_range = ['min' => 100, 'max' => 300]; 
-} else {
+
+if ($bmiCategory === 'Normal weight') {
+    $goal = 'maintain';
     $weightDifferenceText = "You are at your ideal weight.";
+} else {
+    if ($currentWeight < $idealWeight) {
+        $goal = 'gain';
+        $weightDifference = $idealWeight - $currentWeight;
+        $weightDifferenceText = "You should gain approximately {$weightDifference} kg to reach your ideal weight.";
+        $calorie_range = ['min' => 300, 'max' => 500];
+    } elseif ($currentWeight > $idealWeight) {
+        $goal = 'lose';
+        $weightDifference = $currentWeight - $idealWeight;
+        $weightDifferenceText = "You should lose approximately {$weightDifference} kg to reach your ideal weight.";
+        $calorie_range = ['min' => 95, 'max' => 300];
+    } else {
+        $goal = 'maintain';
+        $weightDifferenceText = "You are at your ideal weight.";
+    }
 }
 
-
 $recommendedFoods = [];
-if (!empty($goal)) {
+if ($bmiCategory === 'Normal weight') {
+    $recommendedFoods = fetchRecommendedFoods($conn_foods, $goal, ['min' => 212, 'max' => 213]);
+} elseif (!empty($goal)) {
     $recommendedFoods = fetchRecommendedFoods($conn_foods, $goal, $calorie_range);
 }
 
-
 $conn_users->close();
 $conn_foods->close();
-
 
 header('Content-Type: text/csv');
 header('Content-Disposition: attachment;filename=user_food_information.csv');
@@ -164,8 +158,17 @@ fputcsv($output, ["BMI Category: {$bmiCategory}"]);
 fputcsv($output, [$weightDifferenceText]);
 fputcsv($output, ['']);
 
-
-if (!empty($goal)) {
+if ($bmiCategory === 'Normal weight') {
+    fputcsv($output, ["Recommended Foods for Normal Weight (200-215 Calories):"]);
+    fputcsv($output, ['Food Name', 'Calories', 'Protein (g)', 'Fiber (g)']);
+    if (empty($recommendedFoods)) {
+        fputcsv($output, ['No recommended foods found.']);
+    } else {
+        foreach ($recommendedFoods as $food) {
+            fputcsv($output, [$food['aliment'], $food['calories'], $food['protein'], $food['fiber']]);
+        }
+    }
+} elseif (!empty($goal)) {
     fputcsv($output, ["Recommended Foods to {$goal} weight:"]);
     fputcsv($output, ['Food Name', 'Calories', 'Protein (g)', 'Fiber (g)']);
     if (empty($recommendedFoods)) {
@@ -176,7 +179,6 @@ if (!empty($goal)) {
         }
     }
 }
-
 
 fclose($output);
 ?>

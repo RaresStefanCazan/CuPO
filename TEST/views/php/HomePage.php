@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Full Screen Image</title>
-    <link rel="stylesheet" href="/CuPO/WEB/TEST/views/Style-CSS/HPStyle.css">
+    <link rel="stylesheet" href="/CuPO/WEB/TEST/views/Style-CSS/HPStyle1.css">
 </head>
 <body>
     <div class="full-screen-image">

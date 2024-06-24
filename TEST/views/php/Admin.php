@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
-    <link rel="stylesheet" href="/CuPO/WEB/TEST/views/Style-CSS/HPStyle.css">
+    <link rel="stylesheet" href="/CuPO/WEB/TEST/views/Style-CSS/HPStyle1.css">
    
 </head>
 <body>

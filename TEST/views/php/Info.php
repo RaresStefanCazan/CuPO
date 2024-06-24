@@ -9,17 +9,17 @@
 <body>
     <header class="header" id="header">
         <div class="home-container">
-            <h1><a href="homeL">Info</a></h1>
+            <h1><a href="homeL">Home</a></h1>
         </div>
     </header>
     <main>
         <section class="info-section">
             <h2>About Us</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</p>
+            <p>Welcome to our server! We are dedicated to developing a web application that exposes a REST API utilizing data from Open Food Facts. Our goal is to manage culinary preferences, including categories, prices, ingredients, perishability, and more. The application supports creating shopping lists and user administration, while generating statistics exportable in open formats like CSV and PDF.</p>
         </section>
         <section class="info-section">
             <h2>Contact Us</h2>
-            <p>Email: info@example.com</p>
+            <p>Email: contactrares@yahoo.com</p>
             <p>Phone: 123-456-7890</p>
         </section>
     </main>
